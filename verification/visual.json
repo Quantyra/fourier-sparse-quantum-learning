@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-10",
+  "scope": "Actual internal assistant inspection of all ten final PDF pages; layout only",
+  "pdf_sha256": "2178e4d485d6da2f9aa42346eef92b116905188d51ab2b75ae01e19f77f7e782",
+  "pages_inspected": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "result": "PASS",
+  "findings": "No clipping, overlapping equations, missing glyphs or unreadable references found. The theorem and bibliography span pages normally.",
+  "render_sha256": {
+    "1": "c0147687ff7c70badffd73475bca8b35d7de70a1f7ab9aed76cde64c3f9c2fd4",
+    "2": "e17cf8c21b5528d84d6612d5346fbe4cbc0ef881eced6fa664427f3400afa7ec",
+    "3": "4be62d0a4b54bce1cb1c0f4f333b563ce088e096174d6a4a58085cf5890e9c31",
+    "4": "34aca0abea160f68a9ae8d178126636f9ef90a6db9507b39f4ed541cf7682032",
+    "5": "823e9ce0612103c8ec152d9ba1b7270a56dc72500d83bfc53136de552befd11c",
+    "6": "b897354273ad3a042a8b3151eceeaddbc1922b6b5477e62cd41daa012595ba67",
+    "7": "d19e30021f881270f90f5ff2ff4e5447598d7723576438f1c0c080fcd9fa45be",
+    "8": "212114f207ae4799f5f5269746b38574b6db2581f61398469f622b382e9e13fc",
+    "9": "385e8df44eb9f061a0009a48e88be5b7cb4d51f6f17fb37f81ee5de7a391d94b",
+    "10": "23710bb1214e7754532f0f4300df193a2c3fe70a1160138f95a85c76676a4327"
+  }
+}

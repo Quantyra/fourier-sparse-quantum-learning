@@ -1,0 +1,26 @@
+{
+  "scope": "Document build and automated layout checks only; not mathematical certification",
+  "compiler": "Tectonic 0.17.0",
+  "pymupdf_version": "1.28.2",
+  "source_date_epoch": 1794268800,
+  "command": "tectonic --keep-logs --outdir ../.build main.tex",
+  "source_sha256": "26d4d6a33e829577919fb70481b7c15d069839af96063502a3e913c077494718",
+  "pdf_sha256": "2178e4d485d6da2f9aa42346eef92b116905188d51ab2b75ae01e19f77f7e782",
+  "pages": 10,
+  "final_log_diagnostics": [],
+  "environment_messages": [
+    "Fontconfig error: Cannot load default config file: No such file: (null)"
+  ],
+  "page_text_lengths": [
+    2108,
+    3276,
+    2085,
+    2565,
+    2275,
+    2371,
+    2971,
+    3231,
+    3158,
+    528
+  ]
+}

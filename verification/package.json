@@ -1,0 +1,32 @@
+{
+  "scope": "Artifact/metadata identity only; not proof certification",
+  "result": "PASS",
+  "pages": 10,
+  "embedded_fonts": 21,
+  "files": {
+    ".gitattributes": "8df22cc43d34bc5cf0e2ae4d1cd11a28ad8073b0e53f3ad51d1d693516d12b32",
+    ".gitignore": "3c9e63e3cd780bf7e478c2bd4c8d3dab0797bd1642567876f269f91a8ad13756",
+    ".zenodo.json": "31d18c01a2d4abdf4f1ba412361ad6d814b20c8e20c92ae8ffedcf2369ef2cae",
+    "AGENTS.md": "a3ec950f021b1189c80d00f039adfe5d10a3b314f035e8cbde2eb61027eefa07",
+    "CITATION.cff": "7a441e1665109e7de5e95013aa3dcc9cb54cb733b4b0b7001a390310c8e2022a",
+    "LICENSE": "08f46cb0e10fa97b8cd5bd3d3051ece6fd7fd4c03950e2a0b9a32ec2a1ca9612",
+    "manuscript/main.pdf": "2178e4d485d6da2f9aa42346eef92b116905188d51ab2b75ae01e19f77f7e782",
+    "manuscript/main.tex": "26d4d6a33e829577919fb70481b7c15d069839af96063502a3e913c077494718",
+    "publication/README.md": "150c49f30c0f151c0c8aa7bee50bf16a4bc581aa88f7ac466a12590582771035",
+    "README.md": "d3772cb7ea1651bcf68e17b8ac4cba17db71706a505984fb6d4b505c7c0e120b",
+    "REVIEW.md": "0c10e79eb5e94f6ca1291dc74c6d73f6081ae1ca5b0fbb0a6d7a4dc265b00b30",
+    "SOURCES.md": "52ea11eafd260bc9407e33f22857e22304abbefd475aa07cb946250500e0b67a",
+    "tools/build.py": "e6e847e45be038537d66c36971e5a86c7620bc537cf4b2bce0c4881dca066d89",
+    "tools/check_constants.py": "26fda8b44b3266b2b44ad39b70c0fce7a6e97f7ff7da3a41953786d5b7890b8c",
+    "tools/check_package.py": "4805421b93b3213d97c85e8bbd1f5477aed8e2993501ce5db3c6cb1892fac570",
+    "tools/requirements.txt": "51f9939becc283211e6792439332e4622fd6af4b8b4f05e45a65fa9863e7369f",
+    "verification/build.json": "e5cbfa3520786d0319e5d1b44b125aa999a907b6d61bbabf97ff29269a255f2c",
+    "verification/constants.json": "c58f511be069884294365a72ee73d9f548e551d158da7d4458293a6271b9d2bb",
+    "verification/README.md": "fd07462fe77ca8d1cfa428468037d70212b8f1dde0e9febce26ebb24b1232e71",
+    "verification/visual.json": "8f65fef70566c24c80451407df5a220505947ea054565c626ea4919c4251eb9b"
+  },
+  "citation_schema": "Official CFF 1.2.0 via jsonschema 4.25.1",
+  "citation_schema_sha256": "0b8d22140da702d766df318dcff3a91af2f39521298dcf36d76315fd99cc169b",
+  "pdf_sha256": "2178e4d485d6da2f9aa42346eef92b116905188d51ab2b75ae01e19f77f7e782",
+  "source_sha256": "26d4d6a33e829577919fb70481b7c15d069839af96063502a3e913c077494718"
+}

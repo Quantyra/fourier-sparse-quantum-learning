@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "Please cite the manuscript using preferred-citation. No Zenodo DOI has yet been issued."
+type: software
+title: "Fourier-sparse quantum learning: manuscript archive"
+version: 0.1.0
+authors:
+  - family-names: Fredriksen
+    given-names: Daniel
+    affiliation: Quantyra Inc.
+    orcid: https://orcid.org/0009-0002-9123-7435
+license: CC-BY-4.0
+repository-code: https://github.com/Quantyra/fourier-sparse-quantum-learning
+url: https://github.com/Quantyra/fourier-sparse-quantum-learning
+keywords:
+  - quantum learning
+  - Fourier sparsity
+  - exact learning
+preferred-citation:
+  type: article
+  title: "Polynomial-Time Exact Learning of Fourier-Sparse Boolean Functions from Nearly Linear Quantum Samples"
+  authors:
+    - family-names: Fredriksen
+      given-names: Daniel
+      affiliation: Quantyra Inc.
+      orcid: https://orcid.org/0009-0002-9123-7435
+  year: 2026
+  notes: "Manuscript version 0.1.0; internal AI-assisted review. No independent peer review or formal certification."
+  url: https://github.com/Quantyra/fourier-sparse-quantum-learning/blob/main/manuscript/main.pdf
