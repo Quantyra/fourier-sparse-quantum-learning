@@ -1,0 +1,185 @@
+Focused revision check of your own completed initial review. This is NOT a request to repeat the entire proof audit. Check only the actual changes below and whether they resolve your applicable initial findings without introducing a new blocker. Prior reviewers' reports and verdicts are withheld. Use the complete initial manuscript already in your conversation plus this exact baseline-to-revision diff. Do not browse, use tools, read other files, edit, run commands or delegate. Return at most 900 words: verdict GO/GO WITH NOTES/REVISE/HOLD; any remaining blocker; specific checks of changed mathematics/access/claims; limits of your verification. Finish once these changes are checked. Do not infer correctness from model agreement.
+
+Baseline commit: 69dfe76e30a0e80ae82265031f5e5b408a3d9342
+Revised manuscript/main.tex SHA-256: 91aadd7a185ad4c8b365350018703ecb8a3fe7c0dfaa7593fa08ec8533b6e804
+The all-tape resource theorem, sample counts, recurrence, and success bound are unchanged. Changes clarify successful-index caps, same-batch refitting, all aborts returning FAIL, concentration substitutions and citation scope.
+
+Primary-source checks performed separately by coordinator (not a claim that you accessed the sources):
+- GOSSW author manuscript April 27 2011, printed p21 Theorem8.1: granularity at most floor(log2(sparsity))-1, hence the stated dyadic coefficient multiple; sparsity one handled separately. URL https://www.cs.columbia.edu/~rocco/Public/4-27-2011-gossw.pdf
+- Tropp arXiv:1004.4389v7, pp20-21 Corollary5.2 has the lower e^(-delta)/(1-delta)^(1-delta) and upper e^delta/(1+delta)^(1+delta) factors with exponent mu/R. The revised proof writes the applied hypotheses and scalar simplification. Theorem6.1(ii), pp23-24, is the bounded Bernstein fraction with denominator sigma^2+Rt/3; part(iii) is the split form. URL https://arxiv.org/pdf/1004.4389v7
+- Ye arXiv:2610.17648v1 Theorem1.1 states a sample guarantee, not a fixed polynomial time bound. Algorithms1-2 explicitly construct and solve over a candidate dictionary. Its Section5 bound (k+1)^g, g=O(log k/loglog k), is an upper bound, not a computational lower bound. Wording now avoids asserting a lower bound or that no other implementation can be polynomial. URL https://arxiv.org/html/2610.17648v1
+These notes answer named source-interface questions, not exhaustive priority.
+
+EXACT DIFF:
+diff --git a/manuscript/main.tex b/manuscript/main.tex
+index db32da8..1eef1be 100644
+--- a/manuscript/main.tex
++++ b/manuscript/main.tex
+@@ -57,7 +57,7 @@ respectively. Here only fixed powers of logarithms in $n$ and $k$ are suppressed
+ The theorem is about exact representation recovery, including coefficients that are rarely observed by Fourier sampling. It imposes no degree, Fourier-flatness or variance promise. The case $n=0$ needs one label; an upper bound $k>2^n$ can be replaced by $2^n$.
+ 
+ \paragraph{Prior work and comparison.}
+-Arunachalam, Chakraborty, Lee, Paraashar and de Wolf~\cite{ACLPW} obtained an $O(k^{3/2}\log^2 k)$ quantum sample bound and a lower bound of $\Omega(k\log k)$ in their stated parameter range. Ye~\cite{Ye} improves the upper bound to $O(k\log^2 k/\log\log k)$ by constructing a grouped-sample candidate dictionary and proving support containment. That sample bound is smaller than ours. Its explicit dictionary construction does not provide the fixed polynomial computation asserted here. Caro et al.~\cite[Corollary~10]{Caro} give an efficient exact learner with $O(k^4\log(k^2/\delta))$ copies and success $1-\delta$. Thus neither polynomial-time learning alone nor near-linear sample complexity alone is the contribution claimed here.
++Arunachalam, Chakraborty, Lee, Paraashar and de Wolf~\cite{ACLPW} obtained an $O(k^{3/2}\log^2 k)$ quantum sample bound and a lower bound of $\Omega(k\log k)$ in their stated parameter range. Ye~\cite{Ye} improves the upper bound to $O(k\log^2 k/\log\log k)$ by constructing a grouped-sample candidate dictionary and proving support containment. That sample bound is smaller than ours. Ye's Theorem~1.1 states a sample guarantee; it does not state a fixed polynomial computation bound. Its Algorithms~1--2 explicitly construct and solve over the candidate dictionary. We do not assert a computational lower bound for that method. Caro et al.~\cite[Corollary~10]{Caro} give an efficient exact learner with $O(k^4\log(k^2/\delta))$ copies and success $1-\delta$. Thus neither polynomial-time learning alone nor near-linear sample complexity alone is the contribution claimed here.
+ 
+ Our contribution is their simultaneous attainment through a computed approximation with error proportional to the current missing energy. We use Fourier sampling, Boolean granularity~\cite{GOSSW}, concentration inequalities~\cite{Tropp}, and classical Fourier search~\cite{KM} as attributed ingredients. The Fourier search is applied to a stored hypothesis, for which chosen-input evaluations are available. The target itself remains accessible only through supplied examples. We make no claim of optimal logarithmic factors or exhaustive publication priority.
+ 
+@@ -69,7 +69,7 @@ Parseval gives $\sum_s c_s^2=1$. We use the following consequence of Boolean gra
+ \begin{equation}\label{eq:granularity}
+  c_s\ne0\quad\Longrightarrow\quad |c_s|\ge1/k.
+ \end{equation}
+-For actual sparsity $s_0>1$, that theorem makes every coefficient an integer multiple of $2^{1-\lfloor\log_2 s_0\rfloor}$, which suffices for~\eqref{eq:granularity}. A sparsity-one Boolean function is a signed parity.
++For actual sparsity $s_0>1$, Theorem~8.1 of the cited April 27, 2011 author manuscript makes every coefficient an integer multiple of $2^{1-\lfloor\log_2 s_0\rfloor}$. A nonzero coefficient therefore has magnitude at least $2/s_0\ge1/k$, proving~\eqref{eq:granularity}. A sparsity-one Boolean function is a signed parity.
+ 
+ Apply Hadamard gates to all registers in~\eqref{eq:example}. The amplitude of outcome $(s,1)$ is $c_s/\sqrt2$. Thus the last bit is one with probability $1/2$, and conditional on that flag, $s$ has probability $c_s^2$. Independent copies give independent flags and conditional samples. In particular, conditioning on enough flags in a fixed batch does not bias the successful indices.
+ 
+@@ -81,7 +81,7 @@ For an archive $U\subseteq S$, put
+ The algorithm does not compute $W(U)$ or $P_Uf$.
+ 
+ \begin{lemma}[Fresh residual estimates]\label{lem:estimates}
+-Let $a$ be fixed before a fresh label batch, supported on at most $k$ frequencies, and put $r=f-a$, $e=\norm r_2$. Let $D$ be any set of at most $P$ frequencies fixed before that batch. For $0<\varepsilon\le1$, $0<\beta<1$, take
++Let $a$ be fixed before a fresh label batch, supported on at most $k$ frequencies, and put $r=f-a$, $e=\norm r_2$. Let $\mathcal D$ be any set of at most $P$ frequencies fixed before that batch. For $0<\varepsilon\le1$, $0<\beta<1$, take
+ \begin{equation}\label{eq:qestimate}
+  q\ge32k\varepsilon^{-2}\ln\frac{4(P+1)}\beta.
+ \end{equation}
+@@ -89,13 +89,17 @@ Define $v=q^{-1}\sum_\ell r(X_\ell)^2$ and $z_s=q^{-1}\sum_\ell r(X_\ell)\chi_s(
+ With probability at least $1-\beta$,
+ \begin{equation}\label{eq:estimates}
+  e^2/2\le v\le3e^2/2,\qquad
+- |z_s-\widehat r(s)|\le\varepsilon e/\sqrt k\quad(s\in D).
++ |z_s-\widehat r(s)|\le\varepsilon e/\sqrt k\quad(s\in\mathcal D).
+ \end{equation}
+-This conclusion also holds conditional on any history fixing $a,D$ before the batch.
++This conclusion also holds conditional on any history fixing $a,\mathcal D$ before the batch.
+ \end{lemma}
+ \begin{proof}
+-The residual has at most $2k$ Fourier terms; the weaker bound $3k$ gives $\norm r_\infty\le\sqrt{3k}e$. Each $r(X)\chi_s(X)$ has variance at most $e^2$ and centered absolute bound at most $3\sqrt k e$. Scalar Bernstein~\cite[Theorem~6.1(ii), scalar case]{Tropp} bounds a two-sided coefficient failure by $2\exp(-q\varepsilon^2/(4k))$.
+-Also $\operatorname{Var}(r(X)^2)\le3ke^4$ and $|r(X)^2-e^2|\le3ke^2$. Bernstein at deviation $e^2/2$ bounds the failure by $2\exp(-q/(28k))$. A union bound and~\eqref{eq:qestimate} give~\eqref{eq:estimates}. If $e=0$, all residual values vanish and the conclusion is exact.
++The residual has at most $2k$ Fourier terms, so $\norm r_\infty\le\sqrt{2k}e\le\sqrt{3k}e$. Each $r(X)\chi_s(X)$ has variance at most $e^2$. Since $|\widehat r(s)|\le e$, its centered absolute bound is at most $(\sqrt{2k}+1)e\le3\sqrt k e$. For the scalar bounded-case Bernstein inequality~\cite[Theorem~6.1(ii)]{Tropp}, at deviation $t=\varepsilon e/\sqrt k$ the denominator satisfies
++\[
++ \sigma^2+Bt/3\le e^2(1+\varepsilon)\le2e^2.
++\]
++For $q$ independent centered scalar variables bounded in absolute value by $B$, each with variance at most $\sigma^2$, that inequality bounds the deviation of their average by $2\exp[-qt^2/(2(\sigma^2+Bt/3))]$. Thus a two-sided coefficient failure is at most $2\exp(-q\varepsilon^2/(4k))$.
++Also $\operatorname{Var}(r(X)^2)\le3ke^4$ and $|r(X)^2-e^2|\le3ke^2$. At deviation $t=e^2/2$, the denominator is at most $2(3ke^4+ke^4/2)=7ke^4$, giving failure at most $2\exp(-q/(28k))$. Put $L_0=\ln(4(P+1)/\beta)$. Equation~\eqref{eq:qestimate} gives $q\varepsilon^2/(4k)\ge8L_0$ and $q/(28k)\ge L_0$, so the union bound is at most $2(P+1)e^{-L_0}=\beta/2$. If $e=0$, all residual values vanish and the conclusion is exact.
+ \end{proof}
+ 
+ \begin{lemma}[Original-coefficient certification]\label{lem:certificate}
+@@ -122,12 +126,24 @@ uniform labels, with probability at least $1-\beta$, every subset $U\subseteq S$
+ The set $U$ may be chosen using this same batch. The empty fit is zero.
+ \end{lemma}
+ \begin{proof}
+-Let $S_0=S\cup\{0\}$ and $p=|S_0|\le k+1$. The analysis-only row $v(X)=(\chi_s(X))_{s\in S_0}$ satisfies $\norm{v(X)}_2^2=p$ and $\E v(X)v(X)^\mathsf T=I_p$. Matrix Chernoff~\cite[Corollary~5.2]{Tropp}, with the usual scalar exponential simplification, gives
++Let $S_0=S\cup\{0\}$ and $p=|S_0|\le k+1$. The analysis-only row $\phi(X)=(\chi_s(X))_{s\in S_0}$ satisfies $\norm{\phi(X)}_2^2=p$ and $\E\phi(X)\phi(X)^\mathsf T=I_p$. The independent positive semidefinite summands $\phi(X_\ell)\phi(X_\ell)^\mathsf T$ have largest eigenvalue $p$ and their expected sum is $qI_p$. Matrix Chernoff~\cite[Corollary~5.2]{Tropp} therefore bounds the lower and upper eigenvalue tails by
++\[
++ p\left[\frac{e^{-\delta}}{(1-\delta)^{1-\delta}}\right]^{q/p},
++ \qquad
++ p\left[\frac{e^{\delta}}{(1+\delta)^{1+\delta}}\right]^{q/p},
++ \quad 0<\delta<1,
++\]
++respectively. The scalar exponents satisfy
++\[
++ \delta+(1-\delta)\ln(1-\delta)\ge\delta^2/2,\qquad
++ (1+\delta)\ln(1+\delta)-\delta\ge\delta^2/3.
++\]
++The first follows by integrating $-\ln(1-t)\ge t$; the second by integrating $\ln(1+t)\ge t-t^2/2$ on $[0,\delta]$. Summing the tails gives
+ \[
+  \Pr\!\left[\norm{q^{-1}A_{S_0}^{\mathsf T}A_{S_0}-I_p}_{\rm op}>\delta\right]
+- \le2p\exp\!\left(-\frac{q\delta^2}{3p}\right),\quad0<\delta\le1.
++ \le2p\exp\!\left(-\frac{q\delta^2}{3p}\right),\quad0<\delta<1.
+ \]
+-Take $\delta=1/10$. This single event controls all principal submatrices and cross blocks, without a union bound over subsets. For $V=S\setminus U$, the normal equations give
++Take $\delta=1/10$; the budget in~\eqref{eq:qgram} is at least $300p\ln(2p/\beta)$ because both positive factors increase with $p$. This single event controls all principal submatrices and cross blocks, without a union bound over subsets. For $V=S\setminus U$, the normal equations give
+ \[
+  a_U-c_U=(A_U^{\mathsf T}A_U/q)^{-1}(A_U^{\mathsf T}A_V/q)c_V.
+ \]
+@@ -157,9 +173,9 @@ For a $j$-bit prefix $u$, orthogonality gives the bucket identity
+ \end{align}
+ where $x,y$ are independent uniform $j$-bit strings, and the two evaluations share a uniform suffix $z$. This requires chosen inputs to $H$.
+ 
+-Start with the empty prefix. Test both children of each retained prefix with fresh samples of the last expression in~\eqref{eq:bucket}; retain a child if its estimated energy is at least $3\tau^2/4$. Abort immediately if the retained count exceeds $P$ at any depth. Stop at depth $n$.
++Start with the empty prefix. Test both children of each retained prefix with fresh samples of the last expression in~\eqref{eq:bucket}; retain a child if its estimated energy is at least $3\tau^2/4$. Return $\FAIL$ immediately if the retained count exceeds $P$ at any depth. Stop at depth $n$.
+ 
+-Each summand is in $[-1,1]$. For one test, Hoeffding gives
++Each summand is in $[-1,1]$, a range of length two. For one test, Hoeffding's average-deviation bound $2\exp(-Nt^2/2)$ at $t=\tau^2/4$ gives
+ \[
+  \Pr[|\widetilde E_u-E_u|>\tau^2/4]\le2\exp(-N\tau^4/32).
+ \]
+@@ -167,14 +183,14 @@ Condition on the past before each test and take a union bound over the tests. On
+ \end{proof}
+ 
+ \section{Constructing a queryable majority hypothesis}
+-Assume $U\subseteq S$ and a fixed, known rational fit $a$ satisfies~\eqref{eq:invariant}. Write $W=W(U)$ and $e=\norm{f-a}_2$. Draw an estimator label batch with Lemma~\ref{lem:estimates}, using $P=k$. For any index $s$, define
++Assume $U\subseteq S$ and a fixed, known rational fit $a$ satisfies~\eqref{eq:invariant}. Write $W=W(U)$ and $e=\norm{f-a}_2$. Draw an estimator label batch with Lemma~\ref{lem:estimates}, using list-size argument $k$ in that lemma. For any index $s$, define
+ \begin{equation}\label{eq:ctilde}
+  \widetilde c_s=\widehat a(s)+q_e^{-1}\sum_\ell
+  (f(X_\ell)-a(X_\ell))\chi_s(X_\ell).
+ \end{equation}
+ The formula is evaluated only at indices subsequently obtained from fresh Fourier measurements. Its values at all other indices need never be computed.
+ 
+-Conditional on the entire earlier history, $S$ is fixed. Apply Lemma~\ref{lem:estimates} to $D=S$ in the analysis. This yields the event
++Conditional on the entire earlier history, $S$ is fixed. Apply Lemma~\ref{lem:estimates} to $\mathcal D=S$ in the analysis. This yields the event
+ \begin{equation}\label{eq:uniformtrue}
+  e^2/2\le v\le3e^2/2,\qquad
+  |\widetilde c_s-c_s|\le\Delta:=\varepsilon e/\sqrt k\quad(s\in S),
+@@ -206,7 +222,7 @@ On a pass, $|c_s/\widetilde c_s|\le1+\Delta/t<3/2$ and the signs agree. On a fai
+ \[
+  h(x)=\sum_{s\in S:\,s\text{ passes}}\frac{c_s^2}{\widetilde c_s}\chi_s(x).
+ \]
+-The coefficient error on a pass is $c_s(c_s-\widetilde c_s)/\widetilde c_s$, of magnitude at most $3\Delta/2$. On a failure it is at most $6\Delta$. Parseval proves the first inequality. A single weighted sample has second moment
++The coefficient error on a pass is $c_s(c_s-\widetilde c_s)/\widetilde c_s$, of magnitude at most $3\Delta/2$. On a failure it is at most $6\Delta$. The passing and failing sets partition $S$, so Parseval bounds the total squared error by $36|S|\Delta^2\le36\varepsilon^2e^2$. A single weighted sample has second moment
+ $\sum_{s\text{ passes}}c_s^2/\widetilde c_s^2\le9k/4$, independently of $x$. Independence within each group proves the second inequality. The function $h$ is analysis-only; the algorithm evaluates $H$, not $h$.
+ \end{proof}
+ 
+@@ -250,12 +266,12 @@ Choose the least positive odd $g$ such that $2^g\ge512k^2/\beta$, and set
+ \end{align}
+ For an exact finite implementation, replace each $\ln z$ in a sample count by $\lceil\log_2 z\rceil$. This only increases the count and is computed by integer comparisons. The same convention applies to the search and final validation counts.
+ 
+-Initialize $U=\varnothing$ and $a=0$. For exactly $T$ rounds:
++Initialize $U=\varnothing$ and $a=0$. Every abort below returns $\FAIL$. For exactly $T$ rounds:
+ \begin{enumerate}
+ \item Measure $q_e$ fresh labels. Store the residuals and $v$; use them to define~\eqref{eq:ctilde}.
+-\item Fourier-measure $4gm$ new copies. If fewer than $gm$ flags succeed, return $\FAIL$. Split the first $gm$ successful indices into $g$ groups. Abort if more than $k$ distinct indices occur. Compute their estimates and construct~\eqref{eq:H}. All estimates use the preceding label batch.
++\item Fourier-measure $4gm$ new copies. Discard every flag-zero outcome. If fewer than $gm$ flags succeed, return $\FAIL$. Split the first $gm$ successful indices into $g$ groups. Abort if more than $k$ distinct indices occur among these $gm$ grouped indices. Compute their estimates and construct~\eqref{eq:H}. All estimates use the preceding label batch.
+ \item Apply Lemma~\ref{lem:search} to the stored $H$, with $\tau,P,\beta$ above. If the search aborts, return $\FAIL$; otherwise let $L$ be its list.
+-\item Measure $q_c$ new labels. Apply~\eqref{eq:certificate} to $L\setminus U$ with parameter $\gamma$, using residual $f-a$. Add all admissions permanently, including entries whose fitted coefficients may later be zero. Abort if $|U|>k$. Refit the original labels exactly on $U$; abort on singularity or $\norm a_2^2>2$.
++\item Measure $q_c$ new labels. Apply~\eqref{eq:certificate} to $L\setminus U$ with parameter $\gamma$, using residual $f-a$. Add all admissions permanently, including entries whose fitted coefficients may later be zero. Abort if $|U|>k$. Refit the target labels $f(X_\ell)$ from this same certification batch exactly on the updated archive $U$; abort on singularity or $\norm a_2^2>2$.
+ \end{enumerate}
+ After the last round, remove zero fitted coefficients, check sparsity at most $k$, and verify $a^2=1$ by exact Fourier convolution. The convolution has at most $k^2$ pairs; it does not enumerate the cube. Finally compare $a$ with $\lceil2k\ln100\rceil$ fresh labels. Return the exact list if all checks pass, and otherwise return $\FAIL$.
+ 
+@@ -263,7 +279,7 @@ After the last round, remove zero fitted coefficients, check sparsity at most $k
+ Condition on any history with $U\subseteq S$ and~\eqref{eq:invariant}. A round preserves these properties and satisfies $W(U^+)<W(U)/16$ when $W(U)>0$, except on events of total probability at most $6\beta$. For $W(U)=0$, the archive retains $S$ and the new fit remains exactly $f$ with the same stated bound.
+ \end{proposition}
+ \begin{proof}
+-There are six failure events: estimator accuracy, enough Fourier flags, the majority approximation, prefix search, original-coefficient certification, and the full-support Gram event. Their individual bounds are at most $\beta$, conditional on the good earlier stages where required. For flags, a binomial count with mean $2gm$ is below $gm$ with probability at most $\exp(-gm/4)\le\beta$. Conditional on enough flags the successful indices still have their independent Fourier law.
++There are six failure events: estimator accuracy, enough Fourier flags, the majority approximation, prefix search, original-coefficient certification, and the full-support Gram event. Their individual bounds are at most $\beta$, conditional on the good earlier stages where required. For flags, a binomial count with mean $2gm$ is below $gm$ with probability at most $\exp(-gm/4)\le\beta$: indeed, $gm/4=36kg\ge g\ge\log_2(1/\beta)\ge\ln(1/\beta)$. Conditional on enough flags the successful indices still have their independent Fourier law.
+ 
+ Suppose first $W>0$. On the good search event, a true coefficient omitted from $L$ has $|\widehat H(s)|<1/(4k)\le|c_s|/4$. Thus~\eqref{eq:Hgood} implies
+ \begin{equation}\label{eq:omitted}
+@@ -306,7 +322,7 @@ on every nonsingular tape, regardless of whether the archive is correct. Fractio
+ Estimator residuals share the fit's denominator. Therefore every subsequently evaluated estimate~\eqref{eq:ctilde} has a common denominator and numerator length $O(b_a+\log(2kq_e))$. The variance estimate has a squared common denominator of comparable polynomial bit length. The cutoff, certification, norm and Booleanity tests use exact rational comparisons, with no numerical approximation.
+ 
+ \paragraph{Evaluating the hypothesis.}
+-At most $k$ distinct Fourier indices are stored; multiplicities specify their contributions to each group. The distinct-count cap never fires on valid ideal quantum examples, since a Fourier measurement only returns an element of $S$. Write the nonzero estimates as $N_s/D$ with a common positive integer denominator $D$. The product of their nonzero $|N_s|$ is a positive common denominator for the inverse weights, after incorporating $D$ in the numerators. Its bit length is
++At most $k$ distinct grouped Fourier indices are stored; multiplicities specify their contributions to each group. The distinct-count cap never fires on valid ideal quantum examples, since each retained flag-one outcome belongs to $S$; discarded flag-zero outcomes are not counted. Write the nonzero estimates as $N_s/D$ with a common positive integer denominator $D$. The product of their nonzero $|N_s|$ is a positive common denominator for the inverse weights, after incorporating $D$ in the numerators. Its bit length is
+ \[
+  O\bigl(k[b_a+\log(2kq_e)]\bigr)=\widetilde O(k^2).
+ \]
+@@ -322,14 +338,14 @@ Every round count, batch size, prefix count and arithmetic input size is capped.
+ \section{Scope, limitations and verification status}
+ The algorithm bounds both sample use and computation in the noiseless model of supplied examples. It does not improve Ye's logarithmic sample factor~\cite{Ye}, achieve the $O(k\log k)$ target, or provide a practical implementation. Its constants and polynomial exponents are deliberately loose. Noise robustness and improved classical runtime require separate analysis.
+ 
+-The known $H$ can have degree $n$ and exponentially many Fourier coefficients. This is permitted because its evaluation cost is polynomial and it only proposes indices. The sparse residual used for estimation and certification is always $f-a$. The proof is not a statement about generic nonlinear correction of a sparse fit, and it requires neither a short representation of every recovered index in the original samples nor a large clipping defect. These distinctions explain how the computed operation avoids stronger stability assumptions that are unnecessary for the theorem.
++The known $H$ can have degree $n$ and exponentially many Fourier coefficients. This is permitted because its evaluation cost is polynomial and it only proposes indices. The sparse residual used for estimation and certification is always $f-a$. The proof does not require a generic stability theorem for nonlinear corrections of sparse fits, or a short representation of every recovered index in the original samples.
+ 
+-The access model does not yield a general classical simulation of quantum computation or decide BPP versus BQP. Quantum-example preparation is not included in the theorem. Comparison with classical random-example bounds must keep this difference in supplied data explicit.
++After measurement, the algorithm is classical: its data consist of uniform labeled examples and successful Fourier samples with law $c_s^2$. The access model does not yield a general classical simulation of quantum computation or decide BPP versus BQP. Quantum-example preparation is not included in the theorem. Comparison with classical random-example bounds must keep this difference in supplied data explicit.
+ 
+-This manuscript has undergone internal AI-assisted mathematical, resource, attribution and artifact checking. It has not undergone independent peer review or formal certification. The accompanying review record identifies the checks and their limits; document builds and exact arithmetic checks do not constitute a machine-checked proof.
++This manuscript has undergone internal AI-assisted mathematical, resource, attribution and artifact checking, followed by separate model reviews through Grok, Claude and AGY (configured with Gemini). It has not undergone independent peer review or formal certification. The accompanying review record identifies model provenance, findings, revisions and limits; document builds and exact arithmetic checks do not constitute a machine-checked proof.
+ 
+ \paragraph{Author and tool disclosure.}
+-Daniel Fredriksen is affiliated with Quantyra Inc. OpenAI Codex assisted the derivation, literature comparison, manuscript drafting and internal checking. Responsibility for the submitted claims remains with the author. No external funding is asserted in this manuscript. The manuscript and accompanying archive are licensed under CC BY 4.0.
++Daniel Fredriksen is affiliated with Quantyra Inc. OpenAI Codex assisted the derivation, literature comparison, manuscript drafting and internal checking. Responsibility for the submitted claims remains with the author. The manuscript and accompanying archive are licensed under CC BY 4.0.
+ 
+ \begin{thebibliography}{9}
+ \bibitem{ACLPW}

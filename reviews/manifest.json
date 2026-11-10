@@ -1,0 +1,111 @@
+{
+  "scope": "Actual provider/input/output provenance and coordinator dispositions; not proof certification or human peer review",
+  "status": "COMPLETE",
+  "date": "2026-11-10",
+  "final_source_sha256": "91aadd7a185ad4c8b365350018703ecb8a3fe7c0dfaa7593fa08ec8533b6e804",
+  "unresolved_blocking_findings": [],
+  "reviews": [
+    {
+      "provider": "grok",
+      "native_cli_version": "1.0.46",
+      "configured_model": "grok-4.7",
+      "returned_model": "grok-4.7; result usage: grok-4.7-build",
+      "model_limit": "Returned model label is provider metadata, not an independent serving audit",
+      "initial": {
+        "input_packet": "reviews/initial-packet.txt",
+        "input_packet_sha256": "f39716ab75d0e03f96d0e4540f2694b912753bac3e87cbd1459b249f01072ff5",
+        "report": "reviews/grok-initial.md",
+        "report_sha256": "6e2af5bc81f2e2c9c41ead75970782485667053bc5103f83808811a809f86b4c",
+        "verdict": "GO WITH NOTES",
+        "completion_verified": true,
+        "effort": "medium",
+        "started_utc": "2026-11-10T19:30:23.991925+00:00",
+        "elapsed_seconds": 961.65,
+        "raw_response_sha256": "413eb97d960baa111d509eff3804412272a44dc9bc5ee177a93e7f31f35034e9",
+        "scope": "Complete baseline manuscript plus source-comparison notes",
+        "continuation_sha256": "5aa82ef42c4a330361371009e765f02cc038e7a6f9dae610281f1ba413b5a0eb",
+        "continuation_scope": "Resumed timed-out session with original complete packet, requesting a substantive final review and no tools; timeout itself is excluded.",
+        "continuation_input": "reviews/grok-recovery-request.txt"
+      },
+      "revision": {
+        "input_packet": "reviews/revision-packet.txt",
+        "input_packet_sha256": "72018252ebcb9dd00db47dea5fd7bb83ca5d8b50d480451f36b0fcb021092526",
+        "report": "reviews/grok-revision.md",
+        "report_sha256": "42037af05b60e00c74019e81c013b46f8d46d575e1bad37e28f3809c267b2f2b",
+        "verdict": "GO",
+        "completion_verified": true,
+        "effort": "low",
+        "started_utc": "2026-11-10T19:48:42.054756+00:00",
+        "elapsed_seconds": 115.05,
+        "raw_response_sha256": "180538a8f7139c64a938ab1e81c7b55ab705b89104b183e40bef6f2faefc0ebe",
+        "scope": "Focused exact baseline-to-final-source diff in the reviewer conversation; not a fresh full-proof audit"
+      }
+    },
+    {
+      "provider": "claude",
+      "native_cli_version": "2.1.316",
+      "configured_model": "opus",
+      "returned_model": "claude-opus-5-5",
+      "model_limit": "Returned model label is provider metadata, not an independent serving audit",
+      "initial": {
+        "input_packet": "reviews/initial-packet.txt",
+        "input_packet_sha256": "f39716ab75d0e03f96d0e4540f2694b912753bac3e87cbd1459b249f01072ff5",
+        "report": "reviews/claude-initial.md",
+        "report_sha256": "9eef2d921c678d0088d88acb779e110cb4159b038ccc4474f64d7fa84b22f03c",
+        "verdict": "GO WITH NOTES",
+        "completion_verified": true,
+        "effort": "high",
+        "started_utc": "2026-11-10T19:30:23.976287+00:00",
+        "elapsed_seconds": 430.78,
+        "raw_response_sha256": "f536799319050411a9c9ff6ffd130b79f5a189ecac46989e6569e93da49ec4cd",
+        "scope": "Complete baseline manuscript plus source-comparison notes"
+      },
+      "revision": {
+        "input_packet": "reviews/revision-packet.txt",
+        "input_packet_sha256": "72018252ebcb9dd00db47dea5fd7bb83ca5d8b50d480451f36b0fcb021092526",
+        "report": "reviews/claude-revision.md",
+        "report_sha256": "37d327fa4a5bc9648028a0c66663ca886c70d3f29b670bbb4cc60b773f98b262",
+        "verdict": "GO WITH NOTES",
+        "completion_verified": true,
+        "effort": "medium",
+        "started_utc": "2026-11-10T19:48:42.204525+00:00",
+        "elapsed_seconds": 53.7,
+        "raw_response_sha256": "ff789ac78997646ecef0953274fecae351ce4dd6bd215635a3fa842b9cda035d",
+        "scope": "Focused exact baseline-to-final-source diff in the reviewer conversation; not a fresh full-proof audit"
+      }
+    },
+    {
+      "provider": "agy",
+      "native_cli_version": "1.4.12",
+      "configured_model": "gemini-3.8-flash-high",
+      "returned_model": null,
+      "model_limit": "AGY configured selection is recorded; returned JSON does not independently attest the serving model",
+      "initial": {
+        "input_packet": "reviews/initial-packet.txt",
+        "input_packet_sha256": "f39716ab75d0e03f96d0e4540f2694b912753bac3e87cbd1459b249f01072ff5",
+        "report": "reviews/agy-initial.md",
+        "report_sha256": "55b22ebc9cb3fa01d4131058eaa6587507c75f41b97763792556658b6ba4c668",
+        "verdict": "GO WITH NOTES",
+        "completion_verified": true,
+        "effort": "high",
+        "started_utc": "2026-11-10T18:34:48.369230+00:00",
+        "elapsed_seconds": 398.5,
+        "raw_response_sha256": "365972363481eca23e402c05da56ee173897d7804a8e3ea25511b4f687880a90",
+        "scope": "Complete baseline manuscript plus source-comparison notes"
+      },
+      "revision": {
+        "input_packet": "reviews/revision-packet.txt",
+        "input_packet_sha256": "72018252ebcb9dd00db47dea5fd7bb83ca5d8b50d480451f36b0fcb021092526",
+        "report": "reviews/agy-revision.md",
+        "report_sha256": "ad1fd32e8857f3e9268002d742ea9d6c56e09065bd6d5b356234b35ff207642c",
+        "verdict": "GO",
+        "completion_verified": true,
+        "effort": "high",
+        "started_utc": "2026-11-10T19:51:23.038837+00:00",
+        "elapsed_seconds": 56.24,
+        "raw_response_sha256": "42082b8834c94242b24f521558e3310fb41baf859d260969523fc24152041cbe",
+        "scope": "Focused exact baseline-to-final-source diff in the reviewer conversation; not a fresh full-proof audit"
+      }
+    }
+  ]
+}

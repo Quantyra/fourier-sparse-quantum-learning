@@ -24,5 +24,5 @@ preferred-citation:
       affiliation: Quantyra Inc.
       orcid: https://orcid.org/0009-0002-9123-7435
   year: 2026
-  notes: "Manuscript version 0.1.0; internal AI-assisted review. No independent peer review or formal certification."
+  notes: "Manuscript version 0.1.0; internal AI-assisted checks and separate Grok, Claude and AGY model reviews. No independent peer review or formal certification."
   url: https://github.com/Quantyra/fourier-sparse-quantum-learning/blob/main/manuscript/main.pdf

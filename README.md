@@ -1,6 +1,6 @@
 # Fourier-sparse quantum learning
 
-Cross-provider review is in progress on this branch. AGY has returned a report; Grok and Claude do not yet have completed reports. Two minor proof clarifications are applied in the source, but the PDF and package inventory still represent the initial prepared candidate and await rebuilding. See [review dispositions](reviews/DISPOSITION.md). This branch is not a release-ready package.
+Grok, Claude and AGY completed the requested reviews; appropriate feedback is implemented and the revised passages were rechecked. See [reports and dispositions](reviews/DISPOSITION.md). These are AI reviews, not independent human peer review or formal certification.
 
 **Polynomial-Time Exact Learning of Fourier-Sparse Boolean Functions from Nearly Linear Quantum Samples**
 
@@ -8,7 +8,7 @@ Daniel Fredriksen · Quantyra Inc. · [ORCID 0009-0002-9123-7435](https://orcid.
 
 [Read the manuscript (PDF)](manuscript/main.pdf) · [LaTeX source](manuscript/main.tex) · [Internal review](REVIEW.md) · [Publication status](publication/README.md)
 
-Manuscript version **0.1.0**. The manuscript and internal review package are prepared for Zenodo connection. No release or Zenodo DOI has been issued for this manuscript.
+Manuscript version **0.1.0**. The reviewed manuscript and archive are prepared for the first authorized Zenodo release. The frozen release contains no unissued DOI; post-publication links and verification will be added after actual ingestion.
 
 The main theorem exactly recovers every Boolean function with at most k nonzero Fourier coefficients using O(k log^3(2k)) independent supplied uniform quantum examples, with success at least 2/3 and fixed-polynomial total computation and working space in n and k. Each copy is measured separately. No target membership queries or state-preparation inverse is supplied.
 
@@ -16,7 +16,7 @@ Fresh residual-label estimates make a sign-majority of sampled parities explicit
 
 This complements [Ye's smaller sample bound](https://arxiv.org/abs/2610.17648v1) with a polynomial computational guarantee. Earlier efficient learners and standard ingredients are attributed. No claim of exhaustive novelty, optimal logarithmic factors, noise robustness, practical runtime, general quantum simulation or a BPP/BQP resolution is made.
 
-The analysis and review are **internal and AI-assisted**. No independent peer review or formal certification is claimed. This repository contains a theorem and document verification tools, not an implementation or benchmark of the complete learning algorithm. The [verification scope](verification/README.md) separates document checks from mathematics.
+The analysis is **AI-assisted**, with internal checks followed by separate Grok, Claude and AGY model reviews. No independent peer review or formal certification is claimed. This repository contains a theorem and document verification tools, not an implementation or benchmark of the complete learning algorithm. The [verification scope](verification/README.md) separates document checks from mathematics.
 
 ## Build and check
 
@@ -32,4 +32,4 @@ The build uses a fixed SOURCE_DATE_EPOCH. It writes ignored local output under `
 
 ## License and disclosure
 
-The manuscript and archive are licensed under [CC BY 4.0](LICENSE). OpenAI Codex assisted derivation, literature comparison, drafting and internal checking. The author remains responsible for the claims. No external funding is asserted. See [CITATION.cff](CITATION.cff) for citation metadata; no DOI placeholder is used.
+The manuscript and archive are licensed under [CC BY 4.0](LICENSE). OpenAI Codex assisted derivation, literature comparison, drafting and internal checking. Separate model reviews were obtained through Grok, Claude and AGY (configured with Gemini). The author remains responsible for the claims. See [CITATION.cff](CITATION.cff) for citation metadata; no DOI placeholder is used.

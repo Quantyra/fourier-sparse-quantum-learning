@@ -68,6 +68,22 @@ def main():
     visual = json.loads((ROOT / 'verification/visual.json').read_text(encoding='utf-8'))
     source_hash = sha(ROOT / 'manuscript/main.tex')
     pdf_hash = sha(ROOT / 'manuscript/main.pdf')
+    reviews = json.loads((ROOT / 'reviews/manifest.json').read_text(encoding='utf-8'))
+    require(reviews['status'] == 'COMPLETE' and reviews['unresolved_blocking_findings'] == [],
+            'Requested review process is incomplete')
+    require(reviews['final_source_sha256'] == source_hash, 'Review disposition is for a different source')
+    require({r['provider'] for r in reviews['reviews']} == {'grok', 'claude', 'agy'},
+            'Missing requested provider')
+    for review in reviews['reviews']:
+        for phase in ('initial', 'revision'):
+            entry = review[phase]
+            report = ROOT / entry['report']
+            require(report.stat().st_size > 200 and sha(report) == entry['report_sha256'],
+                    'Missing or altered review report')
+            require(entry['completion_verified'] and entry['verdict'] in {'GO', 'GO WITH NOTES'},
+                    'Review completion or findings unresolved')
+            require(sha(ROOT / entry['input_packet']) == entry['input_packet_sha256'],
+                    'Altered review input packet')
     require(build['source_sha256'] == constants['source_sha256'] == source_hash, 'Stale source check')
     require(build['pdf_sha256'] == visual['pdf_sha256'] == pdf_hash, 'Stale PDF check')
     require(constants['script_sha256'] == sha(ROOT / 'tools/check_constants.py'), 'Stale arithmetic script')
@@ -101,6 +117,7 @@ def main():
     inventory = {p.relative_to(ROOT).as_posix(): sha(p) for p in files}
     result = {'scope': 'Artifact/metadata identity only; not proof certification', 'result': 'PASS',
               'pages': len(doc), 'embedded_fonts': len(font_ids), 'files': inventory,
+              'review_record_scope': 'Provider/input/output identity and recorded dispositions only; not validation of mathematics',
               'citation_schema': 'Official CFF 1.2.0 via jsonschema 4.25.1',
               'citation_schema_sha256': sha(schema_path),
               'pdf_sha256': pdf_hash, 'source_sha256': source_hash}

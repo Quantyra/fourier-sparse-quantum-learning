@@ -1,12 +1,25 @@
 {
   "title": "Polynomial-Time Exact Learning of Fourier-Sparse Boolean Functions from Nearly Linear Quantum Samples",
-  "description": "Research manuscript with PDF, LaTeX and internal review records. An algorithm exactly recovers every k-Fourier-sparse Boolean function with success at least 2/3 using O(k log^3(2k)) independent supplied uniform quantum examples and fixed-polynomial total computation and live space. Fresh residual estimates construct a queryable sign-majority hypothesis; known-function Fourier search and original-target certification contract missing Fourier energy. The theorem uses no target membership query or state-preparation inverse. All samples, adaptive refits and exact rational bit costs are charged. This complements Ye's smaller sample bound with a polynomial computational guarantee. No optimal logarithmic factor, practical implementation, noise robustness, exhaustive novelty, independent peer review, formal certification or BPP/BQP result is claimed. OpenAI Codex assisted derivation, source comparison, drafting and internal checking.",
+  "description": "Research manuscript with PDF, LaTeX and review records. An algorithm exactly recovers every k-Fourier-sparse Boolean function with success at least 2/3 using O(k log^3(2k)) independent supplied uniform quantum examples and fixed-polynomial total computation and live space. Fresh residual estimates construct a queryable sign-majority hypothesis; known-function Fourier search and original-target certification contract missing Fourier energy. The theorem uses no target membership query or state-preparation inverse. All samples, adaptive refits and exact rational bit costs are charged. This complements Ye's smaller sample bound with a polynomial computational guarantee. No optimal logarithmic factor, practical implementation, noise robustness, exhaustive novelty, independent peer review, formal certification or BPP/BQP result is claimed. OpenAI Codex assisted derivation, source comparison, drafting and internal checking. Separate model reviews were obtained through Grok, Claude and AGY (configured with Gemini), with findings dispositioned in the archive. These are AI reviews, not independent human peer review.",
   "version": "0.1.0",
   "upload_type": "publication",
   "publication_type": "preprint",
-  "creators": [{"name": "Fredriksen, Daniel", "affiliation": "Quantyra Inc.", "orcid": "0009-0002-9123-7435"}],
+  "creators": [
+    {
+      "name": "Fredriksen, Daniel",
+      "affiliation": "Quantyra Inc.",
+      "orcid": "0009-0002-9123-7435"
+    }
+  ],
   "access_right": "open",
   "license": "CC-BY-4.0",
   "language": "eng",
-  "keywords": ["quantum learning", "Fourier sparsity", "Boolean functions", "exact learning", "sample complexity", "polynomial-time algorithms"]
+  "keywords": [
+    "quantum learning",
+    "Fourier sparsity",
+    "Boolean functions",
+    "exact learning",
+    "sample complexity",
+    "polynomial-time algorithms"
+  ]
 }

@@ -15,6 +15,37 @@
       "returned_error": "Failed to authenticate: OAuth session expired and could not be refreshed",
       "output_tokens": 0,
       "response_sha256": "47644203257072c354f307071bd74346a05326ef0785f5da1b226c85246b5b0b"
+    },
+    {
+      "provider": "claude",
+      "status": "ZERO_EXIT_EMPTY_RESPONSE_NO_REVIEW",
+      "elapsed_seconds": 467.06
+    },
+    {
+      "provider": "claude",
+      "status": "STORAGE_EXHAUSTION_EMPTY_RETRY_PACKET_STOPPED_NO_REVIEW"
+    },
+    {
+      "provider": "grok",
+      "status": "INITIAL_1200_SECOND_TIMEOUT_NO_FINAL_REPORT",
+      "recovery": "Complete substantive recovery retained in manifest"
+    },
+    {
+      "provider": "agy",
+      "status": "REVISION_CONFIGURATION_REJECTED_NO_REVIEW",
+      "reason": "Configured high model rejected medium effort",
+      "response_sha256": "c0533d842128b5974a263d8867552286cf694b8bedf992574ccb02b318ff38b5"
+    },
+    {
+      "provider": "agy",
+      "status": "REVISION_WRONG_SCOPE_EXCLUDED",
+      "report": "reviews/agy-revision-wrong-scope.md",
+      "report_sha256": "6e735382876e0258b2188838468e7ddd2f2da9f224b7dd0b0ead2aa719937574",
+      "reason": "Continuation reviewed the baseline instead of the revision; corrected explicit file request produced the accepted revised-source report"
     }
-  ]
+  ],
+  "revision_packet": "reviews/revision-packet.txt",
+  "revision_packet_sha256": "72018252ebcb9dd00db47dea5fd7bb83ca5d8b50d480451f36b0fcb021092526",
+  "revision_source_sha256": "91aadd7a185ad4c8b365350018703ecb8a3fe7c0dfaa7593fa08ec8533b6e804",
+  "limits": "Raw CLI envelopes remain local; published reports preserve final response UTF-8 bytes. Runtime/usage is operational evidence, never mathematical evidence. Session usage may be cumulative and is not summed as a per-request bill."
 }

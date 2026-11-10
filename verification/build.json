@@ -4,8 +4,8 @@
   "pymupdf_version": "1.28.2",
   "source_date_epoch": 1794268800,
   "command": "tectonic --keep-logs --outdir ../.build main.tex",
-  "source_sha256": "26d4d6a33e829577919fb70481b7c15d069839af96063502a3e913c077494718",
-  "pdf_sha256": "2178e4d485d6da2f9aa42346eef92b116905188d51ab2b75ae01e19f77f7e782",
+  "source_sha256": "91aadd7a185ad4c8b365350018703ecb8a3fe7c0dfaa7593fa08ec8533b6e804",
+  "pdf_sha256": "38b97a22312d326a843fb79b479b3062998f4be63f7c7c7e1f4c4b4d079773bb",
   "pages": 10,
   "final_log_diagnostics": [],
   "environment_messages": [
@@ -13,14 +13,14 @@
   ],
   "page_text_lengths": [
     2108,
-    3276,
-    2085,
-    2565,
-    2275,
-    2371,
-    2971,
-    3231,
-    3158,
-    528
+    3510,
+    2540,
+    2161,
+    2419,
+    2132,
+    2815,
+    2973,
+    3678,
+    1869
   ]
 }

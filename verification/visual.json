@@ -1,7 +1,7 @@
 {
   "date": "2026-11-10",
-  "scope": "Actual internal assistant inspection of all ten final PDF pages; layout only",
-  "pdf_sha256": "2178e4d485d6da2f9aa42346eef92b116905188d51ab2b75ae01e19f77f7e782",
+  "scope": "Actual coordinator inspection of all ten revised PDF pages; layout only",
+  "pdf_sha256": "38b97a22312d326a843fb79b479b3062998f4be63f7c7c7e1f4c4b4d079773bb",
   "pages_inspected": [
     1,
     2,
@@ -15,17 +15,17 @@
     10
   ],
   "result": "PASS",
-  "findings": "No clipping, overlapping equations, missing glyphs or unreadable references found. The theorem and bibliography span pages normally.",
+  "findings": "All ten rendered pages inspected: no clipping, overlap, missing glyphs or unreadable references. Concentration additions and failure-return wording render correctly. No mathematical certification is implied.",
   "render_sha256": {
     "1": "c0147687ff7c70badffd73475bca8b35d7de70a1f7ab9aed76cde64c3f9c2fd4",
-    "2": "e17cf8c21b5528d84d6612d5346fbe4cbc0ef881eced6fa664427f3400afa7ec",
-    "3": "4be62d0a4b54bce1cb1c0f4f333b563ce088e096174d6a4a58085cf5890e9c31",
-    "4": "34aca0abea160f68a9ae8d178126636f9ef90a6db9507b39f4ed541cf7682032",
-    "5": "823e9ce0612103c8ec152d9ba1b7270a56dc72500d83bfc53136de552befd11c",
-    "6": "b897354273ad3a042a8b3151eceeaddbc1922b6b5477e62cd41daa012595ba67",
-    "7": "d19e30021f881270f90f5ff2ff4e5447598d7723576438f1c0c080fcd9fa45be",
-    "8": "212114f207ae4799f5f5269746b38574b6db2581f61398469f622b382e9e13fc",
-    "9": "385e8df44eb9f061a0009a48e88be5b7cb4d51f6f17fb37f81ee5de7a391d94b",
-    "10": "23710bb1214e7754532f0f4300df193a2c3fe70a1160138f95a85c76676a4327"
+    "2": "c90722e87c7e28b237db581fc013d64c4a08fc51343af6eb7d4870eb0a3c9889",
+    "3": "72375a6d3f4a246fdeae30b93244732e3741da756bcc266d909549cec5880b67",
+    "4": "6835d1c30016f29c3ef7dfeafdafa8d66ad3510257be79218e5f66df4d48ac3e",
+    "5": "6e4c433136e63c135c3f4427e677774e11a3180f061409a3c256be385b8bb9b6",
+    "6": "7749828d8b61c1fe7b0721407bef29d7dd2fdaceecb3832ad65806f576a39352",
+    "7": "d4fe504b18f0a56fc7a7f756b55880520d971cb2f9365f69588c187f2fc61f79",
+    "8": "120b805d7a98ca6d0d6ab309e26887c5289539aa0e570996bcf1ad090241e321",
+    "9": "02cc407791835931041f574066754f1cef55eac56a354f7fce1f5b29d4ba0d03",
+    "10": "c2291322111521122f437757dbebcefb293849d0cadcf539d2c9da7765edc19b"
   }
 }
