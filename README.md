@@ -8,7 +8,7 @@ Daniel Fredriksen · Quantyra Inc. · [ORCID 0009-0002-9123-7435](https://orcid.
 
 [Read the manuscript (PDF)](manuscript/main.pdf) · [LaTeX source](manuscript/main.tex) · [Internal review](REVIEW.md) · [Publication status](publication/README.md)
 
-Manuscript version **0.1.0**. The reviewed manuscript and archive are prepared for the first authorized Zenodo release. The frozen release contains no unissued DOI; post-publication links and verification will be added after actual ingestion.
+Manuscript version **0.1.0**, published November 10, 2026. [Version DOI: 10.5281/zenodo.24118803](https://doi.org/10.5281/zenodo.24118803) ? [All-version DOI](https://doi.org/10.5281/zenodo.24118802) ? [Frozen release and PDF](https://github.com/Quantyra/fourier-sparse-quantum-learning/releases/tag/v0.1.0). Every archived file and the release PDF were verified against the exact tag; see the [post-release receipt](publication/zenodo-verification.json).
 
 The main theorem exactly recovers every Boolean function with at most k nonzero Fourier coefficients using O(k log^3(2k)) independent supplied uniform quantum examples, with success at least 2/3 and fixed-polynomial total computation and working space in n and k. Each copy is measured separately. No target membership queries or state-preparation inverse is supplied.
 

@@ -1,4 +1,13 @@
-# Publication readiness
+# Published preprint and verification
+
+
+**PUBLISHED AND VERIFIED**, November 10, 2026. Version 0.1.0: [10.5281/zenodo.24118803](https://doi.org/10.5281/zenodo.24118803). All-version concept DOI: [10.5281/zenodo.24118802](https://doi.org/10.5281/zenodo.24118802). [Zenodo record](https://zenodo.org/records/24118803) and [GitHub release with PDF](https://github.com/Quantyra/fourier-sparse-quantum-learning/releases/tag/v0.1.0).
+
+The release tag points to `976594a77a9bd71341c04a6056babe6f11102ac3`. Public API metadata matches the title, author/affiliation/ORCID, version 0.1.0, open access, CC BY 4.0 and preprint type. Both DOI URLs resolve. The 224600-byte Zenodo ZIP checksum verifies, every one of its 35 files equals the Git tag byte-for-byte, and the release PDF equals the archived manuscript PDF. Archive SHA-256: `dea218754d6753046727fbc8603f9fd8a4ae9a7ba50405b345233b1bfc5bfd15`.
+
+The [verification receipt](zenodo-verification.json), DOI-bearing CITATION.cff and this readback were added **after** publication on main. They are not represented as contents of the immutable v0.1.0 archive. The frozen source/PDF remain unchanged. No journal submission, formal proof build or PaperMill job was performed.
+
+## Retained pre-release decision
 
 Candidate: manuscript version 0.1.0, November 10, 2026. The author explicitly requested actual Grok, Claude and AGY reviews, implementation of appropriate feedback, then Zenodo publication, and enabled the repository connection. This is the authority for the first release; no journal submission or other outreach is included.
 
