@@ -4,7 +4,7 @@ type: software
 title: "Fourier-sparse quantum learning: manuscript archive"
 version: 0.1.0
 doi: 10.5281/zenodo.24118803
-date-released: 2026-11-10
+date-released: "2026-11-10"
 authors:
   - family-names: Fredriksen
     given-names: Daniel
