@@ -94,7 +94,7 @@ With probability at least $1-\beta$,
 This conclusion also holds conditional on any history fixing $a,D$ before the batch.
 \end{lemma}
 \begin{proof}
-The residual has at most $2k$ Fourier terms; the weaker bound $3k$ gives $\norm r_\infty\le\sqrt{3k}e$. Each $r(X)\chi_s(X)$ has variance at most $e^2$ and centered absolute bound at most $3\sqrt k e$. Scalar Bernstein~\cite[Theorem~6.1(ii), scalar case]{Tropp} bounds a two-sided coefficient failure by $2\exp(-q\varepsilon^2/(4k))$.
+The residual has at most $2k$ Fourier terms, so $\norm r_\infty\le\sqrt{2k}e\le\sqrt{3k}e$. Each $r(X)\chi_s(X)$ has variance at most $e^2$. Since $|\widehat r(s)|\le e$, its centered absolute bound is at most $(\sqrt{2k}+1)e\le3\sqrt k e$. Scalar Bernstein~\cite[Theorem~6.1(ii), scalar case]{Tropp} bounds a two-sided coefficient failure by $2\exp(-q\varepsilon^2/(4k))$.
 Also $\operatorname{Var}(r(X)^2)\le3ke^4$ and $|r(X)^2-e^2|\le3ke^2$. Bernstein at deviation $e^2/2$ bounds the failure by $2\exp(-q/(28k))$. A union bound and~\eqref{eq:qestimate} give~\eqref{eq:estimates}. If $e=0$, all residual values vanish and the conclusion is exact.
 \end{proof}
 
@@ -206,7 +206,7 @@ On a pass, $|c_s/\widetilde c_s|\le1+\Delta/t<3/2$ and the signs agree. On a fai
 \[
  h(x)=\sum_{s\in S:\,s\text{ passes}}\frac{c_s^2}{\widetilde c_s}\chi_s(x).
 \]
-The coefficient error on a pass is $c_s(c_s-\widetilde c_s)/\widetilde c_s$, of magnitude at most $3\Delta/2$. On a failure it is at most $6\Delta$. Parseval proves the first inequality. A single weighted sample has second moment
+The coefficient error on a pass is $c_s(c_s-\widetilde c_s)/\widetilde c_s$, of magnitude at most $3\Delta/2$. On a failure it is at most $6\Delta$. The passing and failing sets partition $S$, so Parseval bounds the total squared error by $36|S|\Delta^2\le36\varepsilon^2e^2$. A single weighted sample has second moment
 $\sum_{s\text{ passes}}c_s^2/\widetilde c_s^2\le9k/4$, independently of $x$. Independence within each group proves the second inequality. The function $h$ is analysis-only; the algorithm evaluates $H$, not $h$.
 \end{proof}
 

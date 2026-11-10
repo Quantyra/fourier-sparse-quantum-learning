@@ -53,7 +53,16 @@ def main():
     require(cff['license'] == zenodo['license'] == 'CC-BY-4.0', 'License mismatch')
     require(zenodo['creators'] == [{'name': 'Fredriksen, Daniel', 'affiliation': 'Quantyra Inc.', 'orcid': '0009-0002-9123-7435'}], 'Author mismatch')
     require(cff['authors'][0]['orcid'].endswith(zenodo['creators'][0]['orcid']), 'ORCID mismatch')
-    require('doi' not in zenodo and 'doi' not in cff and 'doi' not in cff['preferred-citation'], 'Unissued manuscript DOI')
+    require('doi' not in zenodo, 'Do not force an existing DOI into future GitHub archiving')
+    published_path = ROOT / 'publication/zenodo-verification.json'
+    if published_path.exists():
+        published = json.loads(published_path.read_text(encoding='utf-8'))
+        require(published['result'] == 'PASS' and published['all_files_match_tag']
+                and published['release_pdf_matches_archive'], 'Unverified publication receipt')
+        require(cff.get('doi') == cff['preferred-citation'].get('doi') == published['version_doi'],
+                'Citation DOI differs from verified version DOI')
+    else:
+        require('doi' not in cff and 'doi' not in cff['preferred-citation'], 'Unissued manuscript DOI')
     build = json.loads((ROOT / 'verification/build.json').read_text(encoding='utf-8'))
     constants = json.loads((ROOT / 'verification/constants.json').read_text(encoding='utf-8'))
     visual = json.loads((ROOT / 'verification/visual.json').read_text(encoding='utf-8'))

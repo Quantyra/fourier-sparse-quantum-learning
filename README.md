@@ -1,5 +1,7 @@
 # Fourier-sparse quantum learning
 
+Cross-provider review is in progress on this branch. AGY has returned a report; Grok and Claude do not yet have completed reports. Two minor proof clarifications are applied in the source, but the PDF and package inventory still represent the initial prepared candidate and await rebuilding. See [review dispositions](reviews/DISPOSITION.md). This branch is not a release-ready package.
+
 **Polynomial-Time Exact Learning of Fourier-Sparse Boolean Functions from Nearly Linear Quantum Samples**
 
 Daniel Fredriksen · Quantyra Inc. · [ORCID 0009-0002-9123-7435](https://orcid.org/0009-0002-9123-7435)

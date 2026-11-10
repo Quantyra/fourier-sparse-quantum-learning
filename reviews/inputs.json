@@ -1,0 +1,20 @@
+{
+  "baseline": "69dfe76e30a0e80ae82265031f5e5b408a3d9342",
+  "source_sha256": "26d4d6a33e829577919fb70481b7c15d069839af96063502a3e913c077494718",
+  "packet_sha256": "f39716ab75d0e03f96d0e4540f2694b912753bac3e87cbd1459b249f01072ff5",
+  "packet_bytes": 37028,
+  "previous_reports_withheld": true,
+  "sources_note_included": true,
+  "scope": "Complete initial manuscript and author source-comparison notes. Prior review reports and verdicts withheld. No external-source browsing requested.",
+  "packet": "reviews/initial-packet.txt",
+  "failed_attempts": [
+    {
+      "provider": "claude",
+      "status": "AUTHENTICATION_FAILED_NO_REVIEW",
+      "packet_sha256": "f39716ab75d0e03f96d0e4540f2694b912753bac3e87cbd1459b249f01072ff5",
+      "returned_error": "Failed to authenticate: OAuth session expired and could not be refreshed",
+      "output_tokens": 0,
+      "response_sha256": "47644203257072c354f307071bd74346a05326ef0785f5da1b226c85246b5b0b"
+    }
+  ]
+}
