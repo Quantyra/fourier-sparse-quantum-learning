@@ -48,13 +48,13 @@ def main():
     Draft7Validator(schema).validate(cff)
     zenodo = json.loads((ROOT / '.zenodo.json').read_text(encoding='utf-8'))
     require(cff['preferred-citation']['title'] == zenodo['title'], 'Title mismatch')
-    require(cff['version'] == zenodo['version'] == '0.2.0', 'Version mismatch')
+    require(cff['version'] == zenodo['version'] == '0.3.0', 'Version mismatch')
     require(zenodo['upload_type'] == 'publication' and zenodo['publication_type'] == 'preprint', 'Wrong archive type')
     require(cff['license'] == zenodo['license'] == 'CC-BY-4.0', 'License mismatch')
     require(zenodo['creators'] == [{'name': 'Fredriksen, Daniel', 'affiliation': 'Quantyra Inc.', 'orcid': '0009-0002-9123-7435'}], 'Author mismatch')
     require(cff['authors'][0]['orcid'].endswith(zenodo['creators'][0]['orcid']), 'ORCID mismatch')
     require('doi' not in zenodo, 'Do not force an existing DOI into future GitHub archiving')
-    published_path = ROOT / 'publication/zenodo-v0.2.0-verification.json'
+    published_path = ROOT / 'publication/zenodo-v0.3.0-verification.json'
     if published_path.exists():
         published = json.loads(published_path.read_text(encoding='utf-8'))
         require(published['result'] == 'PASS' and published['all_files_match_tag']
@@ -68,7 +68,7 @@ def main():
     visual = json.loads((ROOT / 'verification/visual.json').read_text(encoding='utf-8'))
     source_hash = sha(ROOT / 'manuscript/main.tex')
     pdf_hash = sha(ROOT / 'manuscript/main.pdf')
-    reviews = json.loads((ROOT / 'reviews/v0.2.0/manifest.json').read_text(encoding='utf-8'))
+    reviews = json.loads((ROOT / 'reviews/v0.3.0/manifest.json').read_text(encoding='utf-8'))
     require(reviews['status'] == 'COMPLETE' and reviews['unresolved_blocking_findings'] == [],
             'Requested review process is incomplete')
     require(reviews['final_source_sha256'] == source_hash, 'Review disposition is for a different source')

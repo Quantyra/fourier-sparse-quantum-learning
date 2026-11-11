@@ -26,3 +26,9 @@ The same primary Tropp corollary was rechecked for Grok's exact-constant concern
 ## Version 0.2.0 comparison scope
 
 The same dated primary-source checks are reused: the target, access model, granularity, concentration and known-function Fourier-search interfaces are unchanged. The new claim separates proposal confidence from archive safety and proves its adaptive progress count directly. No new external theorem is imported for that step. O(k log^2(2k)) remains larger than Ye's stated sample bound; no best-known bound or exhaustive novelty claim is added.
+
+## Version 0.3.0 computation refinement
+
+The existing granularity, concentration, sample/computation comparison and prefix-search attribution remain applicable. Sharing samples across frozen same-depth tests uses the same explicitly derived bucket identity; correlated tests are handled by conditional concentration and a union bound. No new Fourier-search principle, sample improvement, practical-runtime or exhaustive novelty claim is made.
+
+The exact fitting implementation uses the integer-preserving method of [Bareiss, Mathematics of Computation 22 (1968), 565-578](https://doi.org/10.1090/S0025-5718-1968-0226829-0). The transfer question is whether exact original-label fitting has polynomially bounded intermediate integers on unsuccessful tapes. Integer matrices and bordered-minor identities provide that structure; the manuscript derives the required identity, minor sizes, exact divisions and conservative Cramer cost. The focused primary-index check confirmed attribution and the determinant interface; direct AMS/OSTI PDF retrieval failed, so no fresh full-paper validation is claimed.

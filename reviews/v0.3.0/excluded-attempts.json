@@ -1,0 +1,19 @@
+{
+  "scope": "Operational failures excluded from review clearance",
+  "attempts": [
+    {
+      "provider": "agy",
+      "stage": "version probe before review",
+      "outcome": "Timed out after 30 seconds; no model review launched; original wrapper exception retained locally",
+      "completed_review": false
+    },
+    {
+      "provider": "agy",
+      "stage": "initial invalid-effort launch",
+      "outcome": "gemini-3.8-flash-high rejects medium effort; zero review turns",
+      "exit_code": 1,
+      "raw_response_sha256": "c0533d842128b5974a263d8867552286cf694b8bedf992574ccb02b318ff38b5",
+      "completed_review": false
+    }
+  ]
+}

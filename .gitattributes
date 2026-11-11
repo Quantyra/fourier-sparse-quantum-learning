@@ -6,3 +6,6 @@ reviews/*.md whitespace=-blank-at-eol
 reviews/*.txt whitespace=-blank-at-eol
 reviews/v0.2.0/*.md whitespace=-blank-at-eol
 reviews/v0.2.0/*.txt whitespace=-blank-at-eol
+
+reviews/v0.3.0/*.md whitespace=-blank-at-eol
+reviews/v0.3.0/*.txt whitespace=-blank-at-eol

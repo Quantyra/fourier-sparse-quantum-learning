@@ -1,5 +1,7 @@
 # Historical internal manuscript review
 
+Version 0.3.0 integrates shared-depth batches and the complete sharper computation audit. Its focused provider reports and final dispositions are recorded separately under `reviews/v0.3.0/`; this historical review does not clear that revision. The current internal checks cover fixed-before-batch tests, conditional coverage without independence among children, original-certificate composition, every-tape precision, conservative exact fits and the full time/space ledger.
+
 This file retains the initial v0.1.0 analytic review. Version 0.2.0 has [separate reports and dispositions](reviews/v0.2.0/DISPOSITION.md); its artifact identities are recorded in the current verification directory. The historical proof and resource statements below are not the revised theorem's review record.
 
 This record covers initial prepared commit `69dfe76e30a0e80ae82265031f5e5b408a3d9342`; its artifact identities and release hold are historical. The author subsequently authorized publication after actual provider reviews. See [current cross-provider dispositions](reviews/DISPOSITION.md), [current artifact receipts](verification/README.md) and [publication status](publication/README.md) for the revised candidate.

@@ -1,8 +1,12 @@
 {
   "scope": "Exact rational arithmetic checks only; no learner run or mathematical certification",
-  "script_sha256": "673b5783d6e1c06a3c85bc6b5e09950e157a128fd87ab2ef3e2f36718dc207e3",
-  "source_sha256": "a826eda138c3cbe0dee0a12a53470a559429e0d1b40f97afd62356666f2429d6",
+  "script_sha256": "3af73d9968b2f7a3f7b294284cd359341dc732cd56477f9b7f8f9636204e71a4",
+  "source_sha256": "aa73155e2bee2ce85f27eff07785f601ae29fbc535dff0e25ed0cc5b3fadd565",
   "checks": {
+    "shared_search_N_factor": true,
+    "shared_search_log_factor": true,
+    "search_hoeffding_scale": true,
+    "depth_union_factor": true,
     "gram_refit_factor": true,
     "norm_cap": true,
     "group_variance": true,

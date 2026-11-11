@@ -7,6 +7,10 @@ import json
 root = Path(__file__).resolve().parents[1]
 alpha2 = F(82, 81)
 checks = {
+    'shared_search_N_factor': 32 * 4**4 == 8192,
+    'shared_search_log_factor': 4 * 64 * 16 == 4096,
+    'search_hoeffding_scale': F(1, 4)**2 / 2 == F(1, 32),
+    'depth_union_factor': 2 * F(1, 2) == 1,
     'gram_refit_factor': 1 + (F(1, 10) / (1 - F(1, 10))) ** 2 == alpha2,
     'norm_cap': alpha2 < 2,
     'group_variance': F(9, 4) / 144 == F(1, 64),

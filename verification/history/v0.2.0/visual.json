@@ -1,0 +1,19 @@
+{
+  "scope": "Actual internal visual inspection; not mathematical certification",
+  "pdf_sha256": "fa44d1e7d4f0f116941974574e2802ae6b894f1103a469a5c1bf1de1a8eebb0b",
+  "pages_inspected": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "result": "PASS",
+  "method": "Viewed each of eleven rendered pages at 100 dpi; checked equations, margins, page flow, references and disclosure. No clipped, missing or overlapping content found."
+}

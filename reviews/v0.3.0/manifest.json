@@ -1,0 +1,144 @@
+{
+  "scope": "Actual provider/input/output identities and coordinator dispositions; not mathematical certification or human peer review",
+  "status": "COMPLETE",
+  "date": "2026-11-10",
+  "final_source_sha256": "aa73155e2bee2ce85f27eff07785f601ae29fbc535dff0e25ed0cc5b3fadd565",
+  "unresolved_blocking_findings": [],
+  "disposition": "reviews/v0.3.0/DISPOSITION.md",
+  "disposition_sha256": "b2ac9c37427147ddc09091d4bb80660f4419df316b0afa021d647eb058caad5c",
+  "reviews": [
+    {
+      "provider": "grok",
+      "native_cli_version": "grok 1.0.46 (2765805b9442)",
+      "configured_model": "grok-4.7",
+      "returned_model": "grok-4.7-build",
+      "model_limit": "Provider metadata is not an independent serving audit; AGY JSON does not attest its serving model",
+      "binary_sha256": "47ad7fbc51767b8b301714111a1e452acc2c89912c08be260e1779a383302a4c",
+      "last_source_sha256": "aa73155e2bee2ce85f27eff07785f601ae29fbc535dff0e25ed0cc5b3fadd565",
+      "phases": [
+        {
+          "phase": "initial",
+          "input_packet": "reviews/v0.3.0/initial-packet.txt",
+          "input_packet_sha256": "a26796b816db20eb3790d34e8b5e0f990d1e0dc32151ff2368f23830b2bcfca7",
+          "source_sha256": "9730a332f889842bf984999d1dd21c52a110a4ef7a9b079e7d6616e0a886a7ee",
+          "report": "reviews/v0.3.0/grok-initial.md",
+          "report_sha256": "805c7f8d7a893159a4d34a6186bf552587167a27d5563368e033847e8a6fd42d",
+          "verdict": "GO WITH NOTES",
+          "completion_verified": true,
+          "effort": "medium",
+          "started_utc": "2026-11-11T05:29:58.984457+00:00",
+          "elapsed_seconds": 416.28,
+          "raw_response_sha256": "ccf79eb68612f84cced7c42b0f9f51041a178a2cd0347c855991db97aa19c856",
+          "returned_model": "grok-4.7-build",
+          "scope": "Focused changed-proof/cost review with complete source and exact diff"
+        },
+        {
+          "phase": "revision",
+          "input_packet": "reviews/v0.3.0/revision-packet.txt",
+          "input_packet_sha256": "1d87c6e9842ef35de1c4a234386a49b92d7d4b2ebe3cfbd91421e857f813d271",
+          "source_sha256": "aa73155e2bee2ce85f27eff07785f601ae29fbc535dff0e25ed0cc5b3fadd565",
+          "report": "reviews/v0.3.0/grok-revision.md",
+          "report_sha256": "2fefa490d59c27e1b024240c3e95dd6108f8fd3b1ed9ce518093f9d17888da6d",
+          "verdict": "GO WITH NOTES",
+          "completion_verified": true,
+          "effort": "low",
+          "started_utc": "2026-11-11T05:40:27.809660+00:00",
+          "elapsed_seconds": 168.95,
+          "raw_response_sha256": "760293adce9eeeb668086d7fda1b3b2cd064caddcc9d0bdedf5fe287e568dcce",
+          "returned_model": "grok-4.7-build",
+          "scope": "Focused changed-proof/cost review with complete source and exact diff"
+        }
+      ],
+      "public_report_local_link_redactions": 0
+    },
+    {
+      "provider": "claude",
+      "native_cli_version": "2.1.316 (Claude Code)",
+      "configured_model": "opus",
+      "returned_model": "claude-opus-5-5",
+      "model_limit": "Provider metadata is not an independent serving audit; AGY JSON does not attest its serving model",
+      "binary_sha256": "e896a9d8da519353a49bf69ca4a695ba7e09067752687c675b3969041e632d52",
+      "last_source_sha256": "aa73155e2bee2ce85f27eff07785f601ae29fbc535dff0e25ed0cc5b3fadd565",
+      "phases": [
+        {
+          "phase": "initial",
+          "input_packet": "reviews/v0.3.0/initial-packet.txt",
+          "input_packet_sha256": "a26796b816db20eb3790d34e8b5e0f990d1e0dc32151ff2368f23830b2bcfca7",
+          "source_sha256": "9730a332f889842bf984999d1dd21c52a110a4ef7a9b079e7d6616e0a886a7ee",
+          "report": "reviews/v0.3.0/claude-initial.md",
+          "report_sha256": "91a329beecf25f3223d528a8f78dc5c72ef7400b14e177326205db2e28dc0ca6",
+          "verdict": "GO WITH NOTES",
+          "completion_verified": true,
+          "effort": "medium",
+          "started_utc": "2026-11-11T05:29:58.975273+00:00",
+          "elapsed_seconds": 173.44,
+          "raw_response_sha256": "b1e9653433179cfe2d40bf0ccdc0e60dae42c19a4c2f2214e9cb90dbc7b82613",
+          "returned_model": "claude-opus-5-5",
+          "scope": "Focused changed-proof/cost review with complete source and exact diff"
+        },
+        {
+          "phase": "revision",
+          "input_packet": "reviews/v0.3.0/revision-packet.txt",
+          "input_packet_sha256": "1d87c6e9842ef35de1c4a234386a49b92d7d4b2ebe3cfbd91421e857f813d271",
+          "source_sha256": "aa73155e2bee2ce85f27eff07785f601ae29fbc535dff0e25ed0cc5b3fadd565",
+          "report": "reviews/v0.3.0/claude-revision.md",
+          "report_sha256": "9b71e8412a46183c7e7a70cfe27e68065aeb0b472a706cc94d6411cddd1ab691",
+          "verdict": "GO WITH NOTES",
+          "completion_verified": true,
+          "effort": "low",
+          "started_utc": "2026-11-11T05:40:30.820575+00:00",
+          "elapsed_seconds": 48.9,
+          "raw_response_sha256": "b4e1d4b664556da7d165d4cd08094c0d221d07ebec5866800d8b2605f1d69340",
+          "returned_model": "claude-opus-5-5",
+          "scope": "Focused changed-proof/cost review with complete source and exact diff"
+        }
+      ],
+      "public_report_local_link_redactions": 0
+    },
+    {
+      "provider": "agy",
+      "native_cli_version": "Not re-probed: prior version probe did not complete; binary identity recorded",
+      "configured_model": "gemini-3.8-flash-high",
+      "returned_model": "Not attested by returned AGY JSON",
+      "model_limit": "Provider metadata is not an independent serving audit; AGY JSON does not attest its serving model",
+      "binary_sha256": "fe9eb2f3884ca6cd630c57eed117580819341bce4b87d2c40b441ddd01cb8f2a",
+      "last_source_sha256": "aa73155e2bee2ce85f27eff07785f601ae29fbc535dff0e25ed0cc5b3fadd565",
+      "phases": [
+        {
+          "phase": "initial",
+          "input_packet": "reviews/v0.3.0/initial-packet.txt",
+          "input_packet_sha256": "a26796b816db20eb3790d34e8b5e0f990d1e0dc32151ff2368f23830b2bcfca7",
+          "source_sha256": "9730a332f889842bf984999d1dd21c52a110a4ef7a9b079e7d6616e0a886a7ee",
+          "report": "reviews/v0.3.0/agy-initial.md",
+          "report_sha256": "3aa914a1aa9ecc16fa3678e36eb94194bdb3e2ca1c83951d1ca6caf7aceedf96",
+          "verdict": "GO WITH NOTES",
+          "completion_verified": true,
+          "effort": "high",
+          "started_utc": "2026-11-11T05:34:40.544346+00:00",
+          "elapsed_seconds": 262.54,
+          "raw_response_sha256": "62edc21a11dd3c9fe5af4a8c690fa16f83adf2b6056cb4c1fcba66df7b1ea196",
+          "returned_model": "Not attested by returned AGY JSON",
+          "scope": "Focused changed-proof/cost review with complete source and exact diff"
+        },
+        {
+          "phase": "revision",
+          "input_packet": "reviews/v0.3.0/revision-packet.txt",
+          "input_packet_sha256": "1d87c6e9842ef35de1c4a234386a49b92d7d4b2ebe3cfbd91421e857f813d271",
+          "source_sha256": "aa73155e2bee2ce85f27eff07785f601ae29fbc535dff0e25ed0cc5b3fadd565",
+          "report": "reviews/v0.3.0/agy-revision.md",
+          "report_sha256": "7fc77d6b265a997f55cb8b2b7e8f578ce7c64cfa8f3155bcda794cb325c6a435",
+          "verdict": "GO",
+          "completion_verified": true,
+          "effort": "high",
+          "started_utc": "2026-11-11T05:40:29.189167+00:00",
+          "elapsed_seconds": 131.81,
+          "raw_response_sha256": "689932c69c78d3e8c5c02199d561426056e2994943663b2b60d484d7d1405009",
+          "returned_model": "Not attested by returned AGY JSON",
+          "scope": "Focused changed-proof/cost review with complete source and exact diff"
+        }
+      ],
+      "public_report_local_link_redactions": 13
+    }
+  ],
+  "excluded_attempts": "reviews/v0.3.0/excluded-attempts.json"
+}

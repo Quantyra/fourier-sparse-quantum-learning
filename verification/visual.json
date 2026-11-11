@@ -1,6 +1,6 @@
 {
   "scope": "Actual internal visual inspection; not mathematical certification",
-  "pdf_sha256": "fa44d1e7d4f0f116941974574e2802ae6b894f1103a469a5c1bf1de1a8eebb0b",
+  "pdf_sha256": "36a18fcf57060f25f45a630d9047ffe8f76169010b1ab6ac3422ea12c9e4ce88",
   "pages_inspected": [
     1,
     2,
@@ -12,8 +12,10 @@
     8,
     9,
     10,
-    11
+    11,
+    12,
+    13
   ],
   "result": "PASS",
-  "method": "Viewed each of eleven rendered pages at 100 dpi; checked equations, margins, page flow, references and disclosure. No clipped, missing or overlapping content found."
+  "method": "Visually inspected all thirteen rendered pages at 100 dpi, then re-inspected pages 10-13 after the final one-sentence Cramer clarification. Checked equations, margins, page flow, references and disclosure; no clipping, missing glyphs or overlaps found."
 }
