@@ -4,3 +4,5 @@
 reviews/*.md whitespace=-blank-at-eol
 # Preserve blank context lines in exact review diff packets.
 reviews/*.txt whitespace=-blank-at-eol
+reviews/v0.2.0/*.md whitespace=-blank-at-eol
+reviews/v0.2.0/*.txt whitespace=-blank-at-eol

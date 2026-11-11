@@ -1,0 +1,17 @@
+{
+  "scope": "Excluded operational attempt; no substantive review received",
+  "attempts": [
+    {
+      "provider": "agy",
+      "configured_model": "gemini-3.8-flash-high",
+      "started_utc": "2026-11-11T00:53:13.907132+00:00",
+      "elapsed_seconds": 30.19,
+      "input_packet_sha256": "ef722d18fb6a401b57327f2be552387904f364c3459d87dc7ab15109203c2da8",
+      "source_sha256": "ac1d730256c61861930fd63beed806e23aff08c82a1dd8c809e93a5b085321ea",
+      "raw_response_sha256": "e14505684ad97b6c58701e40a05d2b0dd0a5776987339c1b3e6822112688ac4a",
+      "status": "EMPTY_RESPONSE_PACKET_READ_DENIED",
+      "counted_as_review": false,
+      "resolution": "Retry granted a session-only read rule for the exact public packet; no broad permission bypass."
+    }
+  ]
+}

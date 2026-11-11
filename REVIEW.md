@@ -1,5 +1,7 @@
 # Historical internal manuscript review
 
+This file retains the initial v0.1.0 analytic review. Version 0.2.0 has [separate reports and dispositions](reviews/v0.2.0/DISPOSITION.md); its artifact identities are recorded in the current verification directory. The historical proof and resource statements below are not the revised theorem's review record.
+
 This record covers initial prepared commit `69dfe76e30a0e80ae82265031f5e5b408a3d9342`; its artifact identities and release hold are historical. The author subsequently authorized publication after actual provider reviews. See [current cross-provider dispositions](reviews/DISPOSITION.md), [current artifact receipts](verification/README.md) and [publication status](publication/README.md) for the revised candidate.
 
 Candidate: version 0.1.0, November 10, 2026. Reviewer: the same OpenAI Codex assistant that assisted the derivation and manuscript preparation. These are separately documented review lenses, **not independent reviewers, independent peer review, or formal certification**. The review covers the complete manuscript, not only the main theorem statement.

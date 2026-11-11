@@ -18,7 +18,13 @@ checks = {
     'certificate_mass': 16 * F(1, 32) ** 2 == F(1, 64),
     'strict_contraction': F(1, 36) + alpha2 / 64 < F(1, 16),
     'coarse_contraction_check': F(1, 36) + F(2, 64) < F(1, 16),
-    'success_margin': 1 - F(6, 100) > F(2, 3),
+    'proposal_epsilon': F(1, 2048)**2 == F(1, 16*262144),
+    'proposal_four_stage_success': 1-4*F(1,16) == F(3,4),
+    'conditional_progress_floor': F(3,4)-2*F(1,1600) >= F(1,2),
+    'safety_union_budget': 2*8*F(1,1600) == F(1,100),
+    'adaptive_tail_base': 2*F(3,4)**8 == F(6561,32768),
+    'adaptive_tail_bound': F(6561,32768) < F(1,4),
+    'success_margin': 1-F(1,100)-F(1,4) == F(37,50) > F(2,3),
 }
 if not all(checks.values()):
     raise SystemExit(json.dumps(checks, indent=2))

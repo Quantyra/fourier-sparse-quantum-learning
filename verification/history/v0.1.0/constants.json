@@ -1,0 +1,20 @@
+{
+  "scope": "Exact rational arithmetic checks only; no learner run or mathematical certification",
+  "script_sha256": "26fda8b44b3266b2b44ad39b70c0fce7a6e97f7ff7da3a41953786d5b7890b8c",
+  "source_sha256": "91aadd7a185ad4c8b365350018703ecb8a3fe7c0dfaa7593fa08ec8533b6e804",
+  "checks": {
+    "gram_refit_factor": true,
+    "norm_cap": true,
+    "group_variance": true,
+    "group_sign_error": true,
+    "majority_bias_budget": true,
+    "majority_floor_budget": true,
+    "markov_budget": true,
+    "search_missing_energy": true,
+    "certificate_mass": true,
+    "strict_contraction": true,
+    "coarse_contraction_check": true,
+    "success_margin": true
+  },
+  "result": "PASS"
+}

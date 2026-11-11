@@ -17,11 +17,11 @@
 \newcommand{\norm}[1]{\left\|#1\right\|}
 \title{Polynomial-Time Exact Learning of Fourier-Sparse Boolean Functions from Nearly Linear Quantum Samples}
 \author{Daniel Fredriksen\\\small Quantyra Inc.\\\small\href{https://orcid.org/0009-0002-9123-7435}{ORCID: 0009-0002-9123-7435}}
-\date{November 10, 2026\\\small Manuscript version 0.1.0}
+\date{November 10, 2026\\\small Manuscript version 0.2.0}
 \begin{document}
 \maketitle
 \begin{abstract}
-We give an algorithm that exactly recovers the Fourier representation of every Boolean function with at most $k$ nonzero Fourier coefficients, using $O(k\log^3(2k))$ independent uniform quantum examples and polynomial total computation and working space in the input dimension and $k$. Each quantum example is measured separately. The algorithm uses no membership queries to the target and no inverse of a state-preparation circuit. Fresh residual labels estimate the coefficients used to weight a subsequent independent batch of Fourier samples. A majority of signs of the resulting averages is an explicitly evaluable Boolean hypothesis. Classical heavy-Fourier search on this known hypothesis produces candidate indices, which a separate label batch certifies against the original target. We prove a uniform contraction of missing original Fourier energy and account for adaptive refitting, exact rational arithmetic, failure probabilities and all resource costs. This complements the smaller sample bound of Ye by supplying a fixed polynomial computational guarantee. The bounds are asymptotic and do not assert practical running time.
+We give an algorithm that exactly recovers the Fourier representation of every Boolean function with at most $k$ nonzero Fourier coefficients, using $O(k\log^2(2k))$ independent uniform quantum examples and polynomial total computation and working space in the input dimension and $k$. Each quantum example is measured separately. The algorithm uses no membership queries to the target and no inverse of a state-preparation circuit. Fresh residual labels estimate the coefficients used to weight a subsequent independent batch of Fourier samples. A majority of signs of the resulting averages is an explicitly evaluable Boolean hypothesis. Classical heavy-Fourier search on this known hypothesis produces candidate indices, which a separate label batch certifies against the original target. Fresh certification protects the archive even when a proposal is inaccurate. A capped adaptive progress argument requires only a constant probability of contraction per trial, removing a logarithm from the previous version. We account for adaptive refitting, exact rational arithmetic, unsuccessful trials and all resource costs. This complements the smaller sample bound in the cited version of Ye by supplying a fixed polynomial computational guarantee. The bounds are asymptotic and do not assert practical running time.
 \end{abstract}
 
 \section{Result, access model and contribution}
@@ -44,9 +44,9 @@ A label batch means computational-basis measurements of fresh copies, giving ind
 \begin{theorem}\label{thm:main}
 For $n\ge1$ and $1\le k\le2^n$, every Boolean $f$ with $|S|\le k$ can be learned exactly with probability at least $2/3$ using
 \[
- O\bigl(k\log^3(2k)\bigr)
+ O\bigl(k\log^2(2k)\bigr)
 \]
-supplied uniform quantum examples. The output is the complete list of pairs $(s,c_s)$ with $c_s\ne0$, with exact rational coefficients. Total quantum work is $O(nk\log^3(2k))$. Conservative classical bit-time and live-space bounds are
+supplied uniform quantum examples. The output is the complete list of pairs $(s,c_s)$ with $c_s\ne0$, with exact rational coefficients. Total quantum work is $O(nk\log^2(2k))$. Conservative classical bit-time and live-space bounds are
 \begin{equation}\label{eq:resources}
  \widetilde O(n^2k^7+nk^9)\quad\text{and}\quad
  \widetilde O(nk^2+k^3),
@@ -57,12 +57,15 @@ respectively. Here only fixed powers of logarithms in $n$ and $k$ are suppressed
 The theorem is about exact representation recovery, including coefficients that are rarely observed by Fourier sampling. It imposes no degree, Fourier-flatness or variance promise. The case $n=0$ needs one label; an upper bound $k>2^n$ can be replaced by $2^n$.
 
 \paragraph{Prior work and comparison.}
-Arunachalam, Chakraborty, Lee, Paraashar and de Wolf~\cite{ACLPW} obtained an $O(k^{3/2}\log^2 k)$ quantum sample bound and a lower bound of $\Omega(k\log k)$ in their stated parameter range. Ye~\cite{Ye} improves the upper bound to $O(k\log^2 k/\log\log k)$ by constructing a grouped-sample candidate dictionary and proving support containment. That sample bound is smaller than ours. Ye's Theorem~1.1 states a sample guarantee; it does not state a fixed polynomial computation bound. Its Algorithms~1--2 explicitly construct and solve over the candidate dictionary. We do not assert a computational lower bound for that method. Caro et al.~\cite[Corollary~10]{Caro} give an efficient exact learner with $O(k^4\log(k^2/\delta))$ copies and success $1-\delta$. Thus neither polynomial-time learning alone nor near-linear sample complexity alone is the contribution claimed here.
+Arunachalam, Chakraborty, Lee, Paraashar and de Wolf~\cite{ACLPW} obtained an $O(k^{3/2}\log^2 k)$ quantum sample bound and a lower bound of $\Omega(k\log k)$ in their stated parameter range. Ye~\cite[version~1]{Ye} improves the upper bound to $O(k\log^2 k/\log\log k)$ by constructing a grouped-sample candidate dictionary and proving support containment. That sample bound is smaller than ours. Ye's Theorem~1.1 states a sample guarantee; it does not state a fixed polynomial computation bound. Its Algorithms~1--2 explicitly construct and solve over the candidate dictionary. We do not assert a computational lower bound for that method. Caro et al.~\cite[Corollary~10]{Caro} give an efficient exact learner with $O(k^4\log(k^2/\delta))$ copies and success $1-\delta$. Thus neither polynomial-time learning alone nor near-linear sample complexity alone is the contribution claimed here.
 
 Our contribution is their simultaneous attainment through a computed approximation with error proportional to the current missing energy. We use Fourier sampling, Boolean granularity~\cite{GOSSW}, concentration inequalities~\cite{Tropp}, and classical Fourier search~\cite{KM} as attributed ingredients. The Fourier search is applied to a stored hypothesis, for which chosen-input evaluations are available. The target itself remains accessible only through supplied examples. We make no claim of optimal logarithmic factors or exhaustive publication priority.
 
 \paragraph{Mechanism.}
-The maintained approximation $a$ has a certified support contained in $S$. Fresh labels estimate $c_s$ at an error scale proportional to $\norm{f-a}_2$. These estimates are fixed before drawing new Fourier samples. Thresholded reciprocals of the estimates then define an evaluable, bounded sign-majority hypothesis $H$. Searching $H$ supplies candidate frequencies, including frequencies not directly sampled. Original-target certification, followed by exact refitting, contracts the missing energy. Keeping $f-a$, rather than $f-H$, as the residual is essential: $H$ can have a dense Fourier spectrum.
+The maintained approximation $a$ has a certified support contained in $S$. Fresh labels estimate $c_s$ at an error scale proportional to $\norm{f-a}_2$. These estimates are fixed before drawing new Fourier samples. Thresholded reciprocals of the estimates then define an evaluable, bounded sign-majority hypothesis $H$. Searching $H$ supplies candidate frequencies, including frequencies not directly sampled. Original-target certification and exact refitting protect the archive for every bounded proposal list; accurate proposals additionally contract the missing energy. Separating constant-confidence proposals from high-confidence archive safety permits a capped sequence of attempts, without requiring every proposal to succeed. Keeping $f-a$, rather than $f-H$, as the residual is essential: $H$ can have a dense Fourier spectrum.
+
+\paragraph{Revision scope.}
+Version~0.1.0 used $O(k\log^3(2k))$ copies by assigning high confidence to every proposal. This revision uses constant proposal confidence and tolerates unsuccessful proposals while preserving archive safety, reducing the total to $O(k\log^2(2k))$. The target class, supplied-example model and polynomial bit-time and space bounds are unchanged.
 
 \section{Basic access and certificate lemmas}
 Parseval gives $\sum_s c_s^2=1$. We use the following consequence of Boolean granularity~\cite[Theorem~8.1]{GOSSW}:
@@ -110,7 +113,7 @@ Suppose $U\subseteq S$, $a$ is supported on $U$, and a candidate list $L$, $|L|\
 On~\eqref{eq:estimates}, no frequency outside $S$ is admitted, and every proposed frequency with $|c_s|>4\varepsilon e/\sqrt k$ is admitted.
 \end{lemma}
 \begin{proof}
-Outside $U$ the mean of $z_s$ is $c_s$. For $c_s=0$, its squared estimate is at most $\varepsilon^2e^2/k$, while the threshold is at least $2\varepsilon^2e^2/k$. If $|c_s|>4\varepsilon e/\sqrt k$, the estimated magnitude exceeds $3\varepsilon e/\sqrt k$, and the square root of the threshold is at most $\sqrt6\varepsilon e/\sqrt k$. The zero-residual case admits nothing.
+Outside $U$ the mean of $z_s$ is $c_s$. For $c_s=0$, its squared estimate is at most $\varepsilon^2e^2/k$, while the threshold is at least $2\varepsilon^2e^2/k$. If $|c_s|>4\varepsilon e/\sqrt k$, the estimated magnitude exceeds $3\varepsilon e/\sqrt k$, and the square root of the threshold is at most $\sqrt6\varepsilon e/\sqrt k$. The zero-residual case admits nothing. More generally, in any batch $v=0$ forces every observed residual and every $z_s$ to vanish, so no index is admitted even without the accuracy event.
 \end{proof}
 
 \begin{lemma}[One Gram event controls adaptive refitting]\label{lem:fit}
@@ -143,7 +146,7 @@ The first follows by integrating $-\ln(1-t)\ge t$; the second by integrating $\l
  \Pr\!\left[\norm{q^{-1}A_{S_0}^{\mathsf T}A_{S_0}-I_p}_{\rm op}>\delta\right]
  \le2p\exp\!\left(-\frac{q\delta^2}{3p}\right),\quad0<\delta<1.
 \]
-Take $\delta=1/10$; the budget in~\eqref{eq:qgram} is at least $300p\ln(2p/\beta)$ because both positive factors increase with $p$. This single event controls all principal submatrices and cross blocks, without a union bound over subsets. For $V=S\setminus U$, the normal equations give
+Take $\delta=1/10$; the budget in~\eqref{eq:qgram} is at least $300p\ln(2p/\beta)$ because both positive factors increase with $p$. This single event controls all principal submatrices and cross blocks, without a union bound over subsets. For $V=S\setminus U$, exact pointwise Fourier inversion gives the label vector $y=A_Uc_U+A_Vc_V$. The normal equations therefore give
 \[
  a_U-c_U=(A_U^{\mathsf T}A_U/q)^{-1}(A_U^{\mathsf T}A_V/q)c_V.
 \]
@@ -229,7 +232,7 @@ $\sum_{s\text{ passes}}c_s^2/\widetilde c_s^2\le9k/4$, independently of $x$. Ind
 \begin{lemma}[Bounded majority and original residual scale]\label{lem:majority}
 Take $m=144k$. Conditional on~\eqref{eq:uniformtrue},
 \begin{equation}\label{eq:majorityexpect}
- \E_{\rm groups}\norm{H-f}_2^2\le576\varepsilon^2e^2+4\,2^{-g}.
+ \E_{\rm groups}\norm{H-f}_2^2\le576\varepsilon^2e^2+4\cdot2^{-g}.
 \end{equation}
 If $\varepsilon^2\le\beta/262144$ and $2^g\ge512k^2/\beta$, then for $W>0$,
 \begin{equation}\label{eq:Hgood}
@@ -242,7 +245,7 @@ $2^g(1/16)^{g/2}=2^{-g}$.
 No independence over different inputs $x$ is asserted. Integrating, and using the squared error bound four for Boolean outputs, gives
 \[
  \E_{\rm groups}\norm{H-f}_2^2
- \le16\norm{h-f}_2^2+4\,2^{-g},
+ \le16\norm{h-f}_2^2+4\cdot2^{-g},
 \]
 which proves~\eqref{eq:majorityexpect}. Since $e^2\le\alpha^2 W$ and $\alpha^2<2$, the first term is at most $\beta W/128$. By~\eqref{eq:granularity}, positive $W$ is at least $1/k^2$, so the second term is also at most $\beta W/128$. Markov gives~\eqref{eq:Hgood}.
 \end{proof}
@@ -250,65 +253,96 @@ which proves~\eqref{eq:majorityexpect}. Since $e^2\le\alpha^2 W$ and $\alpha^2<2
 The majority in~\eqref{eq:H} is taken after taking signs. Bounded output controls the exceptional set $A$ even if the rational averages are large there. This argument does not assume an unbiased computed hypothesis or stability of an unbounded majority polynomial.
 
 \section{Complete algorithm and success probability}
-Set the following parameters, all determined by $n,k$:
+The generic lemmas above allow their failure parameters to be chosen separately. Use constant proposal confidence $\rho$ and smaller archive-safety failure budget $\beta$:
 \begin{align}\label{eq:parameters}
- T&=\lceil\log_2(2k)\rceil,&\beta&=\frac1{100(T+1)},&
- R&=\lceil\sqrt{1/\beta}\rceil,\notag\\
- \varepsilon&=\frac1{512R},&\gamma&=\frac1{32},&m&=144k,\notag\\
- \tau&=\frac1{4k},&P&=64k^2.
+ \ell&=\lceil\log_2(2k)\rceil,&T&=8\ell,&\beta&=\frac1{200T},\notag\\
+ \rho&=\frac1{16},&\varepsilon&=\frac1{2048},&\gamma&=\frac1{32},\notag\\
+ m&=144k,&\tau&=\frac1{4k},&P&=64k^2.
 \end{align}
-Choose the least positive odd $g$ such that $2^g\ge512k^2/\beta$, and set
+Choose the least positive odd $g$ such that $2^g\ge512k^2/\rho=8192k^2$, and set
 \begin{align}\label{eq:batches}
- q_e&=\left\lceil32k\varepsilon^{-2}\ln\frac{4(k+1)}\beta\right\rceil,\notag\\
+ q_e&=\left\lceil32k\varepsilon^{-2}\ln\frac{4(k+1)}\rho\right\rceil,\notag\\
  q_c&=\max\left\{
  \left\lceil32k\gamma^{-2}\ln\frac{4(P+1)}\beta\right\rceil,
  \left\lceil300(k+1)\ln\frac{2(k+1)}\beta\right\rceil\right\}.
 \end{align}
-For an exact finite implementation, replace each $\ln z$ in a sample count by $\lceil\log_2 z\rceil$. This only increases the count and is computed by integer comparisons. The same convention applies to the search and final validation counts.
+For an exact finite implementation, replace each $\ln z$ in a sample count by $\lceil\log_2 z\rceil$. This only increases the count and is computed by integer comparisons. The same convention applies to search and final validation. In Lemma~\ref{lem:estimates}, the proposal uses list-size bound $k$ and failure budget $\rho$, while certification uses $P$, accuracy $\gamma$ and failure budget $\beta$. The generic failure parameter in Lemmas~\ref{lem:majority} and~\ref{lem:search} is instantiated as $\rho$.
 
-Initialize $U=\varnothing$ and $a=0$. Every abort below returns $\FAIL$. For exactly $T$ rounds:
+Initialize $U=\varnothing$ and $a=0$. Execute exactly $T$ trials unless an explicitly stated global abort returns $\FAIL$:
 \begin{enumerate}
-\item Measure $q_e$ fresh labels. Store the residuals and $v$; use them to define~\eqref{eq:ctilde}.
-\item Fourier-measure $4gm$ new copies. Discard every flag-zero outcome. If fewer than $gm$ flags succeed, return $\FAIL$. Split the first $gm$ successful indices into $g$ groups. Abort if more than $k$ distinct indices occur among these $gm$ grouped indices. Compute their estimates and construct~\eqref{eq:H}. All estimates use the preceding label batch.
-\item Apply Lemma~\ref{lem:search} to the stored $H$, with $\tau,P,\beta$ above. If the search aborts, return $\FAIL$; otherwise let $L$ be its list.
-\item Measure $q_c$ new labels. Apply~\eqref{eq:certificate} to $L\setminus U$ with parameter $\gamma$, using residual $f-a$. Add all admissions permanently, including entries whose fitted coefficients may later be zero. Abort if $|U|>k$. Refit the target labels $f(X_\ell)$ from this same certification batch exactly on the updated archive $U$; abort on singularity or $\norm a_2^2>2$.
+\item Measure $q_e$ fresh labels. Store the residuals and $v$ and define~\eqref{eq:ctilde}. These estimates precede the new Fourier samples.
+\item Fourier-measure $4gm$ new copies, discarding every flag-zero outcome. If fewer than $gm$ flags succeed, set $L=\varnothing$ and proceed to step~4. Otherwise split the first $gm$ successful indices into $g$ groups. If more than $k$ distinct grouped indices occur, again set $L=\varnothing$ and proceed to step~4. This distinct-count guard cannot fire for ideal examples of an admitted target. Compute the estimates at these indices and construct~\eqref{eq:H}.
+\item Apply Lemma~\ref{lem:search} to this known $H$ with $\tau,P$ and failure budget $\rho$. Use its returned list, or set $L=\varnothing$ if the search returns $\FAIL$. A failed proposal does not abort the learner or modify its archive.
+\item Measure $q_c$ new labels, including when $L$ is empty. Apply~\eqref{eq:certificate} to $L\setminus U$ with parameter $\gamma$, using the old residual $f-a$. Add all admissions permanently, including indices whose fitted coefficients may later be zero. Globally abort if $|U|>k$. Refit the original target labels $f(X_j)$ from this same batch exactly on the updated archive; globally abort on a singular nonempty system or $\norm a_2^2>2$. The empty fit is zero.
 \end{enumerate}
-After the last round, remove zero fitted coefficients, check sparsity at most $k$, and verify $a^2=1$ by exact Fourier convolution. The convolution has at most $k^2$ pairs; it does not enumerate the cube. Finally compare $a$ with $\lceil2k\ln100\rceil$ fresh labels. Return the exact list if all checks pass, and otherwise return $\FAIL$.
+After the last trial, remove zero fitted coefficients, check sparsity at most $k$, and verify $a^2=1$ by exact Fourier convolution. The convolution has at most $k^2$ pairs; it does not enumerate the cube. Finally compare $a$ with $\lceil2k\ln100\rceil$ fresh labels. Return the exact list if all checks pass, and otherwise return $\FAIL$. No stopping decision uses the unknown energy $W$ or an inference from sampled $v=0$.
 
-\begin{proposition}[Uniform contraction]\label{prop:contraction}
-Condition on any history with $U\subseteq S$ and~\eqref{eq:invariant}. A round preserves these properties and satisfies $W(U^+)<W(U)/16$ when $W(U)>0$, except on events of total probability at most $6\beta$. For $W(U)=0$, the archive retains $S$ and the new fit remains exactly $f$ with the same stated bound.
+\begin{proposition}[Safety for arbitrary proposals]\label{prop:safety}
+Condition on any history with $U\subseteq S$ and~\eqref{eq:invariant}. For every proposal list $L$ of size at most $P$ fixed before step~4, let $C$ be the residual accuracy event of Lemma~\ref{lem:estimates} with parameter $\gamma$, and let $G$ be the full-support Gram event of Lemma~\ref{lem:fit}. Their combined failure probability is at most $2\beta$. On $C\cap G$, no global abort occurs, the updated state satisfies~\eqref{eq:invariant}, and
+\[
+ U\subseteq U^+\subseteq S,\qquad W(U^+)\le W(U).
+\]
+If $W(U)=0$, the new fit remains exactly $f$.
 \end{proposition}
 \begin{proof}
-There are six failure events: estimator accuracy, enough Fourier flags, the majority approximation, prefix search, original-coefficient certification, and the full-support Gram event. Their individual bounds are at most $\beta$, conditional on the good earlier stages where required. For flags, a binomial count with mean $2gm$ is below $gm$ with probability at most $\exp(-gm/4)\le\beta$: indeed, $gm/4=36kg\ge g\ge\log_2(1/\beta)\ge\ln(1/\beta)$. Conditional on enough flags the successful indices still have their independent Fourier law.
+The list precedes the fresh certification batch, even if it depends on all earlier data and an inaccurate $H$. On $C$, Lemma~\ref{lem:certificate} admits only true indices. Thus $|U^+|\le k$. On $G$, the nonsingularity, error and norm guarantees hold for every subset of $S$, including $U^+$ chosen using these same rows. The fit therefore satisfies~\eqref{eq:invariant} and its squared norm is less than two. No archive index is deleted, so missing original energy cannot increase. When $W=0$, the old fit is $f$, all certificate residuals are identically zero and no new index is admitted; the Gram event refits $f$ exactly. The proposal may still contain indices outside $S$; zero certificate residuals reject these as well. The events $C,G$ need not be independent. Their probabilities are bounded conditionally on each history preceding their shared fresh batch, and a union bound gives $2\beta$.
+\end{proof}
 
-Suppose first $W>0$. On the good search event, a true coefficient omitted from $L$ has $|\widehat H(s)|<1/(4k)\le|c_s|/4$. Thus~\eqref{eq:Hgood} implies
+\begin{proposition}[Constant conditional progress]\label{prop:contraction}
+For every history satisfying the preceding invariant with $W(U)>0$, a trial safely preserves that invariant and gives $W(U^+)<W(U)/16$ with probability at least $3/4-2\beta\ge1/2$.
+\end{proposition}
+\begin{proof}
+Use failure budget $\rho$ in the proposal estimates, majority lemma and prefix search. Since $\varepsilon^2=\rho/262144$, Lemma~\ref{lem:majority} gives $\norm{H-f}_2^2\le W/64$ except with conditional probability at most $\rho$ on the estimator event. The flag count is below $gm$ with probability at most $\exp(-gm/4)\le\rho$; conditioning on enough flags preserves the independent Fourier law of the successful indices. A staged union bound over estimates, flags, majority accuracy and search gives simultaneous success with probability at least $1-4\rho=3/4$. No independence among these events is assumed.
+
+On those four events, a true coefficient omitted from $L$ has $|\widehat H(s)|<1/(4k)\le|c_s|/4$, and hence
 \begin{equation}\label{eq:omitted}
  \sum_{s\in S\setminus L}c_s^2
  \le\frac{16}{9}\norm{H-f}_2^2\le W/36.
 \end{equation}
-For the proposed true coefficients still not admitted, Lemma~\ref{lem:certificate} bounds each magnitude by $4\gamma e/\sqrt k$. Their total energy is at most $16\gamma^2e^2\le\alpha^2W/64$. Hence
+On the fresh certification event $C$, every proposed true frequency still not admitted has magnitude at most $4\gamma e/\sqrt k$. Their total energy is at most $16\gamma^2e^2\le\alpha^2W/64$. Therefore
 \begin{equation}\label{eq:contract}
  W(U^+)\le\left(\frac1{36}+\frac{\alpha^2}{64}\right)W<W/16.
 \end{equation}
-No false frequency is admitted. The Gram event of Lemma~\ref{lem:fit} applies to the newly chosen archive using the same certification batch and restores~\eqref{eq:invariant}. It also guarantees that the norm and singularity checks pass. There is no assumption that the new archive is independent of those rows.
-
-If $W=0$, the invariant gives $a=f$. The certification residual vanishes identically, so no new frequency is admitted. The Gram event makes the refit exact again; no majority-approximation assertion is needed. Fixed-round execution avoids making an inference about $W$ from a sampled value $v=0$.
+Intersecting also with $G$ gives a safe contraction. The probability is at least $3/4-2\beta\ge1/2$, because $T\ge8$ and $\beta\le1/1600$. All other safety-preserving trials remain nonincreasing in $W$, whether or not the proposal was accurate.
 \end{proof}
 
 \begin{proof}[Proof of the success claim in Theorem~\ref{thm:main}]
-Initially $W=1$ and~\eqref{eq:invariant} holds. A first-failure union bound over the $T$ rounds gives failure probability at most $6T\beta<0.06$. This conditions on good histories, without assuming independence of archives or round outcomes. On the complementary event,
-\[
- W(U_T)<16^{-T}\le\frac1{16k^4}<\frac1{k^2}.
-\]
-Granularity forces $W(U_T)=0$. The last exact refit is therefore $f$, and all final checks pass surely. This already gives success above $0.94$, hence above $2/3$.
+Initially $W=1$ and~\eqref{eq:invariant} holds. Let $B$ be the event that a first safety failure $C^c$ or $G^c$ occurs during the $T$ trials. Before the first such failure the state is valid, regardless of earlier proposal quality. Proposition~\ref{prop:safety} and a first-failure union bound give
+\begin{equation}\label{eq:safetyfailure}
+ \Pr(B)\le2T\beta=1/100.
+\end{equation}
+We do not condition the entire process on future safety before counting progress.
 
-For completeness, the final validation also limits erroneous acceptance. If two distinct Boolean functions have sparsity at most $k$, their difference $d$ has at most $2k$ Fourier terms and $\norm d_\infty=2$. Cauchy--Schwarz gives $4\le2k\norm d_2^2$, so their disagreement probability is at least $1/(2k)$. Conditional on any incorrect candidate passing Booleanity, the fresh validation accepts it with probability at most $1/100$. Validation is not needed to increase the good-event success probability.
+For the proof only, define indicators $I_1,\ldots,I_T$. If a safety failure occurred earlier, or $W$ is already zero at the trial's start, set $I_t=1$. Otherwise set $I_t=1$ precisely when the four good proposal events from Proposition~\ref{prop:contraction} and $C\cap G$ occur. If execution terminates, unused indicators are one. A global abort cannot precede a safety failure. Thus, for the filtration $\mathcal F_{t-1}$ generated by the past trials, either $I_t=1$ by convention or the current state is valid with positive $W$, and
+\[
+ \Pr(I_t=1\mid\mathcal F_{t-1})\ge1/2.
+\]
+Put $Z_t=\sum_{j\le t}I_j$. Conditional expectation yields
+\[
+ \E[2^{-I_t}\mid\mathcal F_{t-1}]
+ =1-\tfrac12\Pr(I_t=1\mid\mathcal F_{t-1})\le3/4,
+ \qquad \E[2^{-Z_T}]\le(3/4)^T.
+\]
+This iteration does not assume independent trials. By Markov,
+\begin{equation}\label{eq:progresscount}
+ \Pr(Z_T<\ell)\le2^\ell(3/4)^T
+ =\bigl[2(3/4)^8\bigr]^\ell<1/4,
+\end{equation}
+since $\ell\ge1$ and $2(3/4)^8=6561/32768<1/4$.
+
+On $B^c$, zero missing energy is absorbing. If it has not already occurred, $Z_T\ge\ell$ supplies at least $\ell$ genuine factor-16 contractions, interspersed with nonincreasing safe trials. Consequently
+\[
+ W(U_T)<16^{-\ell}\le\frac1{16k^4}<\frac1{k^2}.
+\]
+Granularity forces $W(U_T)=0$. The final exact refit is therefore $f$, and every output check passes surely. Combining~\eqref{eq:safetyfailure} and~\eqref{eq:progresscount} gives exact-output probability greater than $1-1/100-1/4=37/50>2/3$. Dummy indicators after a safety failure do not imply correctness on that event; its probability is charged separately.
+
+For completeness, the final validation limits erroneous acceptance. If two distinct Boolean functions have sparsity at most $k$, their difference $d$ has at most $2k$ Fourier terms and $\norm d_\infty=2$. Cauchy--Schwarz gives $4\le2k\norm d_2^2$, so their disagreement probability is at least $1/(2k)$. Conditional on any incorrect candidate passing Booleanity, fresh validation accepts it with probability at most $1/100$. The exact-output success bound above does not depend on this additional error-detection guarantee.
 \end{proof}
 
 \section{All resource costs and exact arithmetic}\label{sec:costs}
-The parameters satisfy $T,\beta^{-1},\varepsilon^{-2},g=O(\log(2k))$, $q_e=O(k\log^2(2k))$, and $q_c=O(k\log(2k))$. The total supplied-copy cap is
+The proposal parameters $\rho,\varepsilon,\gamma$ are absolute constants. We have $T,\beta^{-1},g=O(\log(2k))$ and $q_e,q_c=O(k\log(2k))$. Including every unsuccessful proposal, refit and final validation, the total supplied-copy cap is
 \begin{equation}\label{eq:copies}
- T(q_e+4gm+q_c)+\lceil2k\ln100\rceil=O(k\log^3(2k)).
+ T(q_e+4gm+q_c)+\lceil2k\ln100\rceil=O(k\log^2(2k)).
 \end{equation}
 The logarithm of $n$ in the prefix-search confidence does not enter this count: those evaluations are of $H$. Each copy requires at most $O(n)$ single-qubit gates and measurements. No consumed copy is reused and no collective measurement is required.
 
@@ -329,20 +363,20 @@ At most $k$ distinct grouped Fourier indices are stored; multiplicities specify 
 Store the resulting signed integer weights and group multiplicities once. To evaluate $H$, compute the parities and signs of the group sums. Positive common factors and $1/m$ do not affect a sign. This costs $\widetilde O(nk+k^3)$ bit operations per query, using schoolbook integer arithmetic. The estimate cutoff prevents an uncontrolled statistical inverse weight; the common-denominator calculation also pays its exact computational representation cost.
 
 \paragraph{Classical time, randomness and space.}
-The search uses at most $2nP=O(nk^2)$ prefix tests. Each takes $O(k^4\log(nk/\beta))$ samples. Consequently there are $O(nk^6\log(nk/\beta))$ evaluations of $H$ per round, which give~\eqref{eq:resources} after charging the $T$ rounds. Generating the shared-suffix input bits is included. Computing estimator residuals and requested coefficients, streaming candidate certificates, constructing the final at-most-$k$ Gram matrix and exact elimination, and checking the final convolution have smaller polynomial costs than this conservative bound.
+The search uses at most $2nP=O(nk^2)$ prefix tests. Each takes $O(k^4\log(nk/\rho))$ samples. Consequently there are $O(nk^6\log(nk/\rho))$ evaluations of $H$ per round, which give~\eqref{eq:resources} after charging the $T$ rounds. Generating the shared-suffix input bits is included. Computing estimator residuals and requested coefficients, streaming candidate certificates, constructing the final at-most-$k$ Gram matrix and exact elimination, and checking the final convolution have smaller polynomial costs than this conservative bound.
 
 Store the current $P$ prefixes or candidates, label rows for the estimator and certificate, the archive, sampled frequencies with multiplicities, integer weights, and streamed candidate accumulators. Candidate accumulators have $\widetilde O(k)$ bits each; there are $O(k^2)$ of them. The total is $\widetilde O(nk^2+k^3)$ live bits. After admissions, compute the new Gram matrix from the stored certificate rows; a $P$-by-$P$ matrix is unnecessary. All temporary integer arithmetic fits these bounds. Old hypotheses and batches are discarded once the new fit is available.
 
-Every round count, batch size, prefix count and arithmetic input size is capped. On bad histories the known function $H$ is still Boolean, since it is a sign-majority. Zero inverses, ties, singular systems and archive overflow have explicit rules. Thus every tape terminates within the stated polynomial bounds, not merely every successful tape. This completes Theorem~\ref{thm:main}.
+Every trial count, batch size, prefix count and arithmetic input size is capped. An unsuccessful proposal yields an empty list; its consumed work and subsequent refit are included. Archive overflow is checked before forming a fit, so its dimension never becomes the larger candidate-list bound. On bad histories the known function $H$ is still Boolean, since it is a sign-majority. Zero inverses, ties, singular systems and archive overflow have explicit rules. Thus every tape terminates within the stated polynomial bounds, not merely every successful tape. This completes Theorem~\ref{thm:main}.
 
 \section{Scope, limitations and verification status}
-The algorithm bounds both sample use and computation in the noiseless model of supplied examples. It does not improve Ye's logarithmic sample factor~\cite{Ye}, achieve the $O(k\log k)$ target, or provide a practical implementation. Its constants and polynomial exponents are deliberately loose. Noise robustness and improved classical runtime require separate analysis.
+The algorithm bounds both sample use and computation in the noiseless model of supplied examples. It does not improve Ye's logarithmic sample factor~\cite{Ye}, achieve the $O(k\log k)$ target, or provide a practical implementation. Its constants and polynomial exponents are deliberately loose. Noise robustness and improved classical runtime require separate analysis. The bound $k$ on target sparsity is an input promise. If the actual sparsity exceeds $k$, the finite resource caps still hold, but neither correctness nor detection of that violation is claimed. The final validation guarantee assumes a target of sparsity at most $k$.
 
 The known $H$ can have degree $n$ and exponentially many Fourier coefficients. This is permitted because its evaluation cost is polynomial and it only proposes indices. The sparse residual used for estimation and certification is always $f-a$. The proof does not require a generic stability theorem for nonlinear corrections of sparse fits, or a short representation of every recovered index in the original samples.
 
 After measurement, the algorithm is classical: its data consist of uniform labeled examples and successful Fourier samples with law $c_s^2$. The access model does not yield a general classical simulation of quantum computation or decide BPP versus BQP. Quantum-example preparation is not included in the theorem. Comparison with classical random-example bounds must keep this difference in supplied data explicit.
 
-This manuscript has undergone internal AI-assisted mathematical, resource, attribution and artifact checking, followed by separate model reviews through Grok, Claude and AGY (configured with Gemini). It has not undergone independent peer review or formal certification. The accompanying review record identifies model provenance, findings, revisions and limits; document builds and exact arithmetic checks do not constitute a machine-checked proof.
+This manuscript has undergone internal AI-assisted mathematical, resource, attribution and artifact checking, with the review record separately identifying the reports for each manuscript version through Grok, Claude and AGY (configured with Gemini). It has not undergone independent peer review or formal certification. The accompanying review record identifies model provenance, findings, revisions and limits; document builds and exact arithmetic checks do not constitute a machine-checked proof.
 
 \paragraph{Author and tool disclosure.}
 Daniel Fredriksen is affiliated with Quantyra Inc. OpenAI Codex assisted the derivation, literature comparison, manuscript drafting and internal checking. Responsibility for the submitted claims remains with the author. The manuscript and accompanying archive are licensed under CC BY 4.0.

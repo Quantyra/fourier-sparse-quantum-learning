@@ -1,4 +1,19 @@
-# Published preprint and verification
+# Publication and verification
+
+## Version 0.2.0
+
+**PUBLISH.** All requested review and artifact gates have passed for manuscript v0.2.0. The author authorized integration of the safe-progress improvement, actual Grok/Claude/AGY reviews, a new Zenodo version and certification-scope reconciliation. All three full reports and final-source rechecks are complete; applicable feedback is implemented and no unresolved blocker remains. These are AI reviews, not independent human peer review or formal certification.
+
+Current claim: every-target exact learning from supplied uniform quantum examples with O(k log^2(2k)) copies, success greater than 37/50 and retained polynomial all-tape costs. The archive includes every failed-trial cost and exact arithmetic; no practical-runtime, noise, exhaustive novelty or BPP/BQP claim is made. The same primary-source comparison is retained with a version-pinned Ye comparison.
+
+The eleven-page revised PDF has been visually inspected in full. Compilation has no layout/reference/missing-glyph diagnostics; eighteen rational constant checks pass. Final-source SHA-256: `a826eda138c3cbe0dee0a12a53470a559429e0d1b40f97afd62356666f2429d6`. PDF SHA-256: `fa44d1e7d4f0f116941974574e2802ae6b894f1103a469a5c1bf1de1a8eebb0b`. The version-specific [review manifest](../reviews/v0.2.0/manifest.json) binds all final reports to this exact source. Old tags, DOIs, review reports and historical artifact receipts remain.
+
+A clean Git-index export rebuilt the byte-identical PDF and passed constants/package validation with pinned checker dependencies. [Rebuild evidence](../verification/clean-export-v0.2.0.json). The final record-only readiness additions are package-checked before tagging; the mathematical source and PDF remain identical to the reviewed/rebuilt artifacts. Create v0.2.0 with the exact PDF through the active GitHub-Zenodo release route, then verify every public archive file and its metadata against the tag.
+
+No v0.2.0 DOI is asserted before actual archiving. The pre-release CITATION file intentionally omits an unissued DOI. Post-release metadata and verification will be added separately from the immutable tag.
+
+
+## Historical version 0.1.0
 
 
 **PUBLISHED AND VERIFIED**, November 10, 2026. Version 0.1.0: [10.5281/zenodo.24118803](https://doi.org/10.5281/zenodo.24118803). All-version concept DOI: [10.5281/zenodo.24118802](https://doi.org/10.5281/zenodo.24118802). [Zenodo record](https://zenodo.org/records/24118803) and [GitHub release with PDF](https://github.com/Quantyra/fourier-sparse-quantum-learning/releases/tag/v0.1.0).
@@ -15,7 +30,7 @@ Review decision: **GO WITH NOTES, all applicable findings dispositioned; no unre
 
 Scientific status: analytic algorithmic theorem with separate AI reviews, not independent human peer review or formal certification. The joint sample/computation bound is unchanged. The coordinator checked the named primary-source interfaces; exhaustive priority is not certified. Existing PaperMill jobs and formalization ownership are unaffected.
 
-Artifact decision: **PUBLISH.** Clean Git-index export rebuilt the byte-identical PDF and passed constants and package validation with pinned checker dependencies supplied. Ten revised PDF pages have been inspected, the build has no layout/reference/missing-glyph diagnostics, and all twelve exact arithmetic checks pass. Current source/PDF identities are in [build.json](../verification/build.json); [package.json](../verification/package.json) records the complete final inventory.
+Artifact decision: **PUBLISH.** Clean Git-index export rebuilt the byte-identical PDF and passed constants and package validation with pinned checker dependencies supplied. Ten revised PDF pages have been inspected, the build has no layout/reference/missing-glyph diagnostics, and all twelve exact arithmetic checks pass. Current source/PDF identities are in [historical build.json](../verification/history/v0.1.0/build.json); [historical package.json](../verification/history/v0.1.0/package.json) records the complete final inventory.
 
 Repository: https://github.com/Quantyra/fourier-sparse-quantum-learning
 

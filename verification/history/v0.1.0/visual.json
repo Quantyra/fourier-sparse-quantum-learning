@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-10",
+  "scope": "Actual coordinator inspection of all ten revised PDF pages; layout only",
+  "pdf_sha256": "38b97a22312d326a843fb79b479b3062998f4be63f7c7c7e1f4c4b4d079773bb",
+  "pages_inspected": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "result": "PASS",
+  "findings": "All ten rendered pages inspected: no clipping, overlap, missing glyphs or unreadable references. Concentration additions and failure-return wording render correctly. No mathematical certification is implied.",
+  "render_sha256": {
+    "1": "c0147687ff7c70badffd73475bca8b35d7de70a1f7ab9aed76cde64c3f9c2fd4",
+    "2": "c90722e87c7e28b237db581fc013d64c4a08fc51343af6eb7d4870eb0a3c9889",
+    "3": "72375a6d3f4a246fdeae30b93244732e3741da756bcc266d909549cec5880b67",
+    "4": "6835d1c30016f29c3ef7dfeafdafa8d66ad3510257be79218e5f66df4d48ac3e",
+    "5": "6e4c433136e63c135c3f4427e677774e11a3180f061409a3c256be385b8bb9b6",
+    "6": "7749828d8b61c1fe7b0721407bef29d7dd2fdaceecb3832ad65806f576a39352",
+    "7": "d4fe504b18f0a56fc7a7f756b55880520d971cb2f9365f69588c187f2fc61f79",
+    "8": "120b805d7a98ca6d0d6ab309e26887c5289539aa0e570996bcf1ad090241e321",
+    "9": "02cc407791835931041f574066754f1cef55eac56a354f7fce1f5b29d4ba0d03",
+    "10": "c2291322111521122f437757dbebcefb293849d0cadcf539d2c9da7765edc19b"
+  }
+}

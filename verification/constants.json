@@ -1,7 +1,7 @@
 {
   "scope": "Exact rational arithmetic checks only; no learner run or mathematical certification",
-  "script_sha256": "26fda8b44b3266b2b44ad39b70c0fce7a6e97f7ff7da3a41953786d5b7890b8c",
-  "source_sha256": "91aadd7a185ad4c8b365350018703ecb8a3fe7c0dfaa7593fa08ec8533b6e804",
+  "script_sha256": "673b5783d6e1c06a3c85bc6b5e09950e157a128fd87ab2ef3e2f36718dc207e3",
+  "source_sha256": "a826eda138c3cbe0dee0a12a53470a559429e0d1b40f97afd62356666f2429d6",
   "checks": {
     "gram_refit_factor": true,
     "norm_cap": true,
@@ -14,6 +14,12 @@
     "certificate_mass": true,
     "strict_contraction": true,
     "coarse_contraction_check": true,
+    "proposal_epsilon": true,
+    "proposal_four_stage_success": true,
+    "conditional_progress_floor": true,
+    "safety_union_budget": true,
+    "adaptive_tail_base": true,
+    "adaptive_tail_bound": true,
     "success_margin": true
   },
   "result": "PASS"

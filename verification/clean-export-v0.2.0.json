@@ -1,0 +1,12 @@
+{
+  "scope": "Clean Git-index export rebuild and package identity only; not proof certification",
+  "result": "PASS",
+  "index_tree": "b6c1ae8a10c8f18e3482238a991c491849e6fa0f",
+  "files": 53,
+  "pdf_sha256": "fa44d1e7d4f0f116941974574e2802ae6b894f1103a469a5c1bf1de1a8eebb0b",
+  "source_sha256": "a826eda138c3cbe0dee0a12a53470a559429e0d1b40f97afd62356666f2429d6",
+  "byte_identical_pdf": true,
+  "build_constants_package_passed": true,
+  "dependencies": "Pinned checker dependencies and official CFF schema supplied in ignored build directory; Tectonic 0.17.0; Python/PyMuPDF as recorded in build receipt",
+  "record_note": "This source/PDF rebuild preceded the final record-only readiness text and this receipt; the final package is separately rechecked before tagging."
+}
