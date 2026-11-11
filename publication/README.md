@@ -1,5 +1,13 @@
 # Publication and verification
 
+## Version 0.4.0
+
+**PUBLISH.** All requested review and artifact gates have passed. Dan authorized integration, actual focused Grok/Claude/AGY reviews, feedback resolution and a new Zenodo version. Three initial reviews and three final-source checks completed (grok: GO WITH NOTES, claude: GO, agy: GO). No unresolved blocking finding remains. These are AI reviews, not human peer review or formal certification. [Review manifest](../reviews/v0.4.0/manifest.json) and [findings/dispositions](../reviews/v0.4.0/DISPOSITION.md).
+
+The complete classical bound is tilde-O(n^2 k^3+n k^5+k^7), retaining O(k log^2(2k)) supplied examples, exact recovery, success >37/50 and tilde-O(nk^2+k^3) live bits. The proof pays hash formation, every label parity, original-coordinate correction, random bits, exact fitting and every unsuccessful trial. Source SHA-256: `f82d438e4989f90d8334701c62bade11e8b87cdf9ec849a991e3b214e67b07c7`. PDF SHA-256: `161b260574bd1a1bf77b96f8351cdc1ef162d9f244eacd2d3b3d513a8d86c7dc` (15 pages, 145114 bytes). All thirty-three rational checks and actual all-page inspection pass; no TeX layout/reference/missing-glyph diagnostic remains. The retained Fontconfig environment message did not prevent compilation or font embedding checks.
+
+A [clean index export](../verification/clean-export-v0.4.0.json) rebuilt the byte-identical source/PDF and passed constants/package checks. The final record-only readiness text and receipt receive a separate clean-export package check before tagging. Publish v0.4.0 and its exact PDF through the existing GitHub-Zenodo route, then verify public metadata, both DOI URLs and every archive file against the tag. Earlier releases/reports/receipts remain immutable. The citation corrects a stale older preferred-version note/URL and omits an unissued version DOI; verified DOI-bearing metadata and post-release evidence will be separate from the immutable archive.
+
 ## Version 0.3.0
 
 **PUBLISHED AND VERIFIED**, November 10, 2026 Hawaii (November 11 UTC). [Version DOI 10.5281/zenodo.24126516](https://doi.org/10.5281/zenodo.24126516); [concept DOI 10.5281/zenodo.24118802](https://doi.org/10.5281/zenodo.24118802); [release and PDF](https://github.com/Quantyra/fourier-sparse-quantum-learning/releases/tag/v0.3.0).

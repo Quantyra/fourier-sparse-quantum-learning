@@ -1,5 +1,7 @@
 # Historical internal manuscript review
 
+Version 0.4.0 replaces search with pruned random hashes and local correction. Actual Grok/Claude/AGY initial reviews and final-source checks are complete; no unresolved blocker remains. [Dispositions](reviews/v0.4.0/DISPOSITION.md) cover dependent hashes, heavy-only isolation, coordinate recovery, conditional safety/progress, complete bit/space costs and reviewer limitations. The historical reviews below do not clear this revision; its exact input/output identities are in [the current manifest](reviews/v0.4.0/manifest.json).
+
 Version 0.3.0 integrates shared-depth batches and the complete sharper computation audit. Its focused provider reports and final dispositions are recorded separately under `reviews/v0.3.0/`; this historical review does not clear that revision. The current internal checks cover fixed-before-batch tests, conditional coverage without independence among children, original-certificate composition, every-tape precision, conservative exact fits and the full time/space ledger.
 
 This file retains the initial v0.1.0 analytic review. Version 0.2.0 has [separate reports and dispositions](reviews/v0.2.0/DISPOSITION.md); its artifact identities are recorded in the current verification directory. The historical proof and resource statements below are not the revised theorem's review record.

@@ -17,11 +17,11 @@
 \newcommand{\norm}[1]{\left\|#1\right\|}
 \title{Polynomial-Time Exact Learning of Fourier-Sparse Boolean Functions from Nearly Linear Quantum Samples}
 \author{Daniel Fredriksen\\\small Quantyra Inc.\\\small\href{https://orcid.org/0009-0002-9123-7435}{ORCID: 0009-0002-9123-7435}}
-\date{November 10, 2026\\\small Manuscript version 0.3.0}
+\date{November 10, 2026\\\small Manuscript version 0.4.0}
 \begin{document}
 \maketitle
 \begin{abstract}
-We give an algorithm that exactly recovers the Fourier representation of every Boolean function with at most $k$ nonzero Fourier coefficients, using $O(k\log^2(2k))$ independent uniform quantum examples and polynomial total computation and working space in the input dimension and $k$. Each quantum example is measured separately. The algorithm uses no membership queries to the target and no inverse of a state-preparation circuit. Fresh residual labels estimate the coefficients used to weight a subsequent independent batch of Fourier samples. A majority of signs of the resulting averages is an explicitly evaluable Boolean hypothesis. Classical heavy-Fourier search on this known hypothesis produces candidate indices, which a separate label batch certifies against the original target. Fresh certification protects the archive even when a proposal is inaccurate. A capped adaptive progress argument requires only a constant probability of contraction per trial. Sharing evaluations across frozen tests at each search depth gives classical bit time $\widetilde O(n^2k^6+nk^7)$, with every parity calculation and exact refit charged. We account for adaptive refitting, exact rational arithmetic, unsuccessful trials and all resource costs. This complements the smaller sample bound in the cited version of Ye by supplying a fixed polynomial computational guarantee. The bounds are asymptotic and do not assert practical running time.
+We give an algorithm that exactly recovers the Fourier representation of every Boolean function with at most $k$ nonzero Fourier coefficients, using $O(k\log^2(2k))$ independent uniform quantum examples and polynomial total computation and working space in the input dimension and $k$. Each quantum example is measured separately. The algorithm uses no membership queries to the target and no inverse of a state-preparation circuit. Fresh residual labels estimate the coefficients used to weight a subsequent independent batch of Fourier samples. A majority of signs of the resulting averages is an explicitly evaluable Boolean hypothesis. Classical heavy-Fourier search on this known hypothesis produces candidate indices, which a separate label batch certifies against the original target. Fresh certification protects the archive even when a proposal is inaccurate. A capped adaptive progress argument requires only a constant probability of contraction per trial. Pruning prefixes of random frequency hashes and correcting the surviving heavy characters gives classical bit time $\widetilde O(n^2k^3+nk^5+k^7)$, with every parity calculation and exact refit charged. We account for adaptive refitting, exact rational arithmetic, unsuccessful trials and all resource costs. This complements the smaller sample bound in the cited version of Ye by supplying a fixed polynomial computational guarantee. The bounds are asymptotic and do not assert practical running time.
 \end{abstract}
 
 \section{Result, access model and contribution}
@@ -48,7 +48,7 @@ For $n\ge1$ and $1\le k\le2^n$, every Boolean $f$ with $|S|\le k$ can be learned
 \]
 supplied uniform quantum examples. The output is the complete list of pairs $(s,c_s)$ with $c_s\ne0$, with exact rational coefficients. Total quantum work is $O(nk\log^2(2k))$. Conservative classical bit-time and live-space bounds are
 \begin{equation}\label{eq:resources}
- \widetilde O(n^2k^6+nk^7)\quad\text{and}\quad
+ \widetilde O(n^2k^3+nk^5+k^7)\quad\text{and}\quad
  \widetilde O(nk^2+k^3),
 \end{equation}
 respectively. Here only fixed powers of logarithms in $n$ and $k$ are suppressed. These resource caps hold on every measurement and random tape; an unsuccessful execution may return $\FAIL$. No chosen-input query to $f$ is used.
@@ -59,13 +59,13 @@ The theorem is about exact representation recovery, including coefficients that 
 \paragraph{Prior work and comparison.}
 Arunachalam, Chakraborty, Lee, Paraashar and de Wolf~\cite{ACLPW} obtained an $O(k^{3/2}\log^2 k)$ quantum sample bound and a lower bound of $\Omega(k\log k)$ in their stated parameter range. Ye~\cite[version~1]{Ye} improves the upper bound to $O(k\log^2 k/\log\log k)$ by constructing a grouped-sample candidate dictionary and proving support containment. That sample bound is smaller than ours. Ye's Theorem~1.1 states a sample guarantee; it does not state a fixed polynomial computation bound. Its Algorithms~1--2 explicitly construct and solve over the candidate dictionary. We do not assert a computational lower bound for that method. Caro et al.~\cite[Corollary~10]{Caro} give an efficient exact learner with $O(k^4\log(k^2/\delta))$ copies and success $1-\delta$. Thus neither polynomial-time learning alone nor near-linear sample complexity alone is the contribution claimed here.
 
-Our contribution is their simultaneous attainment through a computed approximation with error proportional to the current missing energy. We use Fourier sampling, Boolean granularity~\cite{GOSSW}, concentration inequalities~\cite{Tropp}, and classical Fourier search~\cite{KM} as attributed ingredients. The Fourier search is applied to a stored hypothesis, for which chosen-input evaluations are available. The target itself remains accessible only through supplied examples. We make no claim of optimal logarithmic factors or exhaustive publication priority.
+Our contribution is their simultaneous attainment through a computed approximation with error proportional to the current missing energy. We use Fourier sampling, Boolean granularity~\cite{GOSSW}, concentration inequalities~\cite{Tropp}, and classical Fourier search~\cite{KM} with hashed isolation and local character correction~\cite{Datta} as attributed ingredients. The Fourier search is applied to a stored hypothesis, for which chosen-input evaluations are available. The target itself remains accessible only through supplied examples. We make no claim of optimal logarithmic factors or exhaustive publication priority.
 
 \paragraph{Mechanism.}
 The maintained approximation $a$ has a certified support contained in $S$. Fresh labels estimate $c_s$ at an error scale proportional to $\norm{f-a}_2$. These estimates are fixed before drawing new Fourier samples. Thresholded reciprocals of the estimates then define an evaluable, bounded sign-majority hypothesis $H$. Searching $H$ supplies candidate frequencies, including frequencies not directly sampled. Original-target certification and exact refitting protect the archive for every bounded proposal list; accurate proposals additionally contract the missing energy. Separating constant-confidence proposals from high-confidence archive safety permits a capped sequence of attempts, without requiring every proposal to succeed. Keeping $f-a$, rather than $f-H$, as the residual is essential: $H$ can have a dense Fourier spectrum.
 
 \paragraph{Version history.}
-Version~0.1.0 used $O(k\log^3(2k))$ copies. Version~0.2.0 separated constant-confidence proposals from archive safety, reducing this to $O(k\log^2(2k))$. Version~0.3.0 shares known-hypothesis evaluations across each depth's frozen search tests and sharpens the complete classical bound from $\widetilde O(n^2k^7+nk^9)$ to~\eqref{eq:resources}. The example count, exactness, success and live-space guarantees are retained. This computational refinement is not a claim of a new Fourier-search principle or practical running time.
+Version~0.1.0 used $O(k\log^3(2k))$ copies. Version~0.2.0 separated constant-confidence proposals from archive safety, reducing this to $O(k\log^2(2k))$. Version~0.3.0 shared known-hypothesis evaluations across frozen depth tests, giving $\widetilde O(n^2k^6+nk^7)$ classical bit time. Version~0.4.0 prunes random hash prefixes and locally corrects heavy characters, giving~\eqref{eq:resources}. Exactness, success, example count and live space are retained. The refinement does not assert a new Fourier-search principle or practical running time.
 
 \section{Basic access and certificate lemmas}
 Parseval gives $\sum_s c_s^2=1$. We use the following consequence of Boolean granularity~\cite[Theorem~8.1]{GOSSW}:
@@ -158,43 +158,107 @@ The proof uses unknown $S_0$ only to define an event. The algorithm constructs o
 \end{proof}
 
 \section{Fourier search on a known Boolean function}
-The prefix-energy mechanism is associated with Kushilevitz--Mansour~\cite{KM}. We specify shared batches, conditional coverage and finite caps. The hypothesis need not have a sparse Fourier spectrum.
+Prefix-energy search is associated with Kushilevitz--Mansour~\cite{KM}; hashed isolation and local character correction appear in Datta et al.~\cite[Lemma~8 and Claims~12--15]{Datta}. We combine pruned hash-prefix tests with explicit coordinate recovery and account for all processing. The proof below is self-contained. Only genuinely heavy frequencies need isolation: extra proposals are permitted and will face original-target certification. The known Boolean hypothesis may have a dense Fourier spectrum.
 
-\begin{lemma}[Shared-batch heavy-spectrum search]\label{lem:search}
-Given deterministic evaluation access to $H:\F_2^n\to\{-1,1\}$, rational $0<\tau\le1$ and $0<\beta<1$, let $P=\lceil4/\tau^2\rceil$ and
-\[
- L_0=\left\lceil\log_2\frac{4nP}{\beta}\right\rceil,
- \qquad N=\left\lceil32\tau^{-4}L_0\right\rceil.
-\]
-A classical algorithm returns at most $P$ indices, or $\FAIL$, using at most $n$ depth batches, $2nP$ prefix tests, $2nN$ evaluations of $H$, and $N(3n^2+n)/2$ random bits. With probability at least $1-\beta$, it does not fail and its list contains every $s$ with $|\widehat H(s)|\ge\tau$.
+\begin{lemma}[Pruned hashed heavy-spectrum recovery]\label{lem:search}
+Given deterministic evaluation access to $H:\F_2^n\to\{-1,1\}$, $n\ge1$, rational $0<\tau\le1$ and $0<\eta<1$, set
+\begin{align}\label{eq:hashparameters}
+ P&=\lceil4/\tau^2\rceil,&
+ t&=\left\lceil\log_2\frac{4096}{\eta\tau^4}\right\rceil,\notag\\
+ L_0&=\left\lceil\log_2\frac{16tP}{\eta}\right\rceil,&
+ N&=\lceil32\tau^{-4}L_0\rceil,\qquad M=\lceil224\tau^{-2}\rceil.
+\end{align}
+Let $J$ be the least positive odd integer with $2^J\ge4nP/\eta$.
+A classical algorithm returns at most $P$ distinct explicit $n$-bit indices, or $\FAIL$. Except with probability at most $3\eta/4$, it does not fail and its list contains every $s$ with $|\widehat H(s)|\ge\tau$. It uses at most $2tN+2nJM$ evaluations of $H$. All caps hold on every tape, and the success guarantee holds conditional on any preceding history fixing $H$.
 \end{lemma}
 \begin{proof}
-For a $j$-bit prefix $u$, suffix Parseval and independent prefix inputs give
+Write $d_s=\widehat H(s)$, so $\sum_s d_s^2=1$. Sample $t$ independent uniform rows $b_1,\ldots,b_t\in\F_2^n$ to form a binary matrix $B$. Let $B_j$ consist of its first $j$ rows. Do not condition on full rank or discard dependent rows, including when $t>n$.
+
+\paragraph{Bucket and projection identities.}
+For labels $v$ of the indicated lengths define
 \begin{align}\label{eq:bucket}
- E_u&=\sum_{v\in\F_2^{n-j}}\widehat H(u,v)^2\notag\\
- &=\E_z\left(\E_x H(x,z)\chi_u(x)\right)^2
- =\E_{z,x,y}H(x,z)H(y,z)\chi_u(x+y),
+ E_{j,v}&=\sum_{s:B_js=v}d_s^2
+ =\E_{x,u}H(x)H(x+B_j^{\mathsf T}u)(-1)^{v\cdot u},\notag\\
+ \mathcal P_v(y)&=\sum_{s:Bs=v}d_s\chi_s(y)
+ =\E_u H(y+B^{\mathsf T}u)(-1)^{v\cdot u}.
 \end{align}
-where $x,y$ are independent uniform $j$-bit strings and $z$ is an independent uniform $(n-j)$-bit suffix. The triple distribution is the same for all prefixes at depth $j$.
+In the first identity $x\in\F_2^n,u\in\F_2^j$ are independent uniform points; in the second $u\in\F_2^t$ is uniform. Expand the Fourier series. Orthogonality over $x$ removes the first identity's cross terms, and averaging $(-1)^{u\cdot(B_js+v)}$ gives the indicator $B_js=v$. The same averaging proves the second identity. Uniformity is in the full label-parameter space, so the identities also hold for dependent rows and infeasible labels. No inverse matrix or coset representative is needed.
 
-Start with the empty prefix. Before sampling at depth $j$, freeze both children of every retained prefix into a list $C_j$, with $|C_j|\le2P$. An empty list returns the empty output. Initialize a signed integer accumulator $A_u$ for each child. Draw $N$ fresh independent triples $(x,y,z)$; for each row compute $H(x,z)H(y,z)$ once and add its product with $\chi_u(x+y)$ to every $A_u$. Discard each row after processing it. Only after the entire batch, retain the children with $A_u/N\ge3\tau^2/4$. Return $\FAIL$ if their count exceeds $P$; otherwise use a new independent batch at the next depth. Return the length-$n$ indices. No child is selected using a partially observed batch.
+\paragraph{Prune frozen hash prefixes.}
+Start with the empty label. At depth $j=1,\ldots,t$, freeze both children of every retained label into $C_j$, with $|C_j|\le2P$. If empty, return the empty list. Initialize integer counters $A_v=0$. For each of $N$ fresh independent uniform pairs $(x,u)\in\F_2^n\times\F_2^j$, compute $B_j^{\mathsf T}u$ and $H(x)H(x+B_j^{\mathsf T}u)$ once. Add this product times $(-1)^{v\cdot u}$ to every frozen label's counter; then discard the row. After the full batch retain labels with $A_v/N\ge3\tau^2/4$. Return $\FAIL$ if their number exceeds $P$. Otherwise choose the next children only after this batch is complete. Write $\mathcal C$ for the final distinct $t$-bit labels.
 
-Conditional on the history preceding a depth batch, $H$ and $C_j$ are fixed. Each child's summands are independent across rows and belong to $[-1,1]$. Hoeffding's two-sided bound at $t=\tau^2/4$ gives
+Conditional on $B$ and the preceding history, each tested label's independent row summands lie in $[-1,1]$ and have mean $E_{j,v}$. The bounded-variable Hoeffding estimate at deviation $\tau^2/4$ gives
 \[
- \Pr[|A_u/N-E_u|>\tau^2/4\mid\text{past}]
- \le2\exp(-N\tau^4/32)\le\frac{\beta}{2nP},
+ \Pr[|A_v/N-E_{j,v}|>\tau^2/4\mid\text{past},B]
+ \le2\exp(-N\tau^4/32)\le\frac{\eta}{8tP}.
 \]
-since $L_0\ge\ln(4nP/\beta)$. A union bound over the frozen children gives conditional failure at most $\beta/n$. Define failure to be false at unreached depths after termination. Taking expectations and a union bound over the $n$ depths gives total failure at most $\beta$. Estimates for distinct children may be correlated; their independence is not required. We do not condition on future accurate batches.
+Here $L_0\ge\ln(16tP/\eta)$. Union-bound over the frozen labels, then take conditional expectations and sum over the $t$ levels; failures at unreached levels are defined false. The probability of any reached inaccurate estimate is at most $\eta/4$, for every fixed $B$. No independence among labels or conditioning on future accuracy is used.
 
-On simultaneous accuracy, every ancestor of a coefficient of magnitude at least $\tau$ has energy at least $\tau^2$ and survives. Every retained bucket has energy at least $\tau^2/2$. Distinct prefixes at a depth give disjoint buckets of total energy one, so at most $2/\tau^2\le P$ survive and the cap cannot fire. Overflow at a reached depth therefore implies an inaccurate estimate at that depth. An empty frontier cannot discard a heavy coefficient on simultaneous accuracy. Each depth uses two $H$ evaluations per row and $n+j$ random bits per row, giving the claimed caps. All inputs are chosen for the known $H$, with no new target examples.
+On simultaneous accuracy, every prefix of a coefficient with magnitude at least $\tau$ has energy at least $\tau^2$ and survives. Every retained prefix has energy at least $\tau^2/2$. Same-depth buckets are disjoint with total energy one, so at most $2/\tau^2\le P$ survive. Thus no overflow occurs, and all heavy coefficients' full labels belong to $\mathcal C$. Only $2P$ labels per depth are ever tested; there is no iteration over $2^t$ labels.
+
+\paragraph{Isolate only heavy coefficients.}
+For each fixed heavy $s$, define the noise energy in its bucket by
+\[
+ T_s(B)=\sum_{a\ne s:\,Ba=Bs}d_a^2.
+\]
+For $a\ne s$, independent uniform rows give $\Pr[Ba=Bs]=2^{-t}$, regardless of $n$ versus $t$. Consequently $\E_B T_s\le2^{-t}$. There are at most $\tau^{-2}$ heavy coefficients. Markov and a union bound imply
+\begin{equation}\label{eq:hashisolation}
+ \Pr_B[\exists s:\ |d_s|\ge\tau,\ T_s>\tau^2/1024]
+ \le\frac{1024}{2^t\tau^4}\le\frac\eta4.
+\end{equation}
+On the complementary good-hash event, heavy coefficients have distinct full labels: a collision with another heavy $s'$ would give $T_s\ge d_{s'}^2\ge\tau^2$. Buckets without a heavy coefficient require no isolation guarantee and may yield arbitrary proposals.
+
+\paragraph{Recover original coordinate bits.}
+For each coordinate $i=1,\ldots,n$, perform $J$ repetitions. In each, choose a fresh uniform $y\in\F_2^n$ and $M$ independent uniform vectors $u\in\F_2^t$. Using~\eqref{eq:bucket}, accumulate both projections $\mathcal P_v(y)$ and $\mathcal P_v(y+e_i)$ for all $v\in\mathcal C$, sharing each row's two $H$ evaluations. For each label, the vote is the product of the signs of its two integer sums, with $\sgn(0)=1$. A positive majority of the odd $J$ votes sets bit $i$ of the decoded index $s_v$ to zero; a negative majority sets it to one. All repetitions and coordinates use fresh randomness. Keep only the current coordinate's vote counters and the bits already decoded. Finally discard $s_v$ if $Bs_v\ne v$, and return the remaining indices. Different retained labels cannot then produce the same index.
+
+Fix a good $B$, a completed pruning transcript and a surviving heavy label $v=Bs$. Write
+\[
+ \mathcal P_v(y)=d_s\chi_s(y)+r_s(y),\qquad
+ \norm{r_s}_2^2=T_s\le\tau^2/1024.
+\]
+The residual need not have mean zero. Since both $y$ and $y+e_i$ are uniform, Markov and a union bound give
+\[
+ \Pr_y[|r_s(y)|>\tau/4\ \text{or}\ |r_s(y+e_i)|>\tau/4]
+ \le32T_s/\tau^2\le1/32.
+\]
+Conditional on any $y$, each empirical projection errs by more than $\tau/4$ with probability at most
+\[
+ 2\exp(-M\tau^2/32)\le2e^{-7}\le1/64.
+\]
+The two estimates may be correlated; their failure union is at most $1/32$. Outside these events, each estimated projection is within $\tau/2$ of its $d_s\chi_s$ term. As $|d_s|\ge\tau$, both signs are correct and their product equals
+\[
+ \sgn(d_s)^2\chi_s(y)\chi_s(y+e_i)
+ =\chi_s(e_i)=(-1)^{s_i}.
+\]
+This includes negative coefficients and the constant character. A vote is wrong with probability at most $1/16$. For a fixed heavy index and coordinate, the $J$ repetitions are independent conditional on $H,B$ and the pruning transcript. A union bound over erroneous-majority subsets gives
+\[
+ \Pr[\text{decoded bit wrong}]\le2^J(1/16)^{\lceil J/2\rceil}
+ \le2^{-J}\le\frac{\eta}{4nP}.
+\]
+Union-bound over at most $nP$ heavy bits. No independence across coordinates or labels is required. Except with probability $\eta/4$, every heavy index is recovered exactly and passes $Bs_v=v$.
+
+The pruning, hash and conditional correction budgets sum to $3\eta/4$. Bad events are charged without any correctness assertion on those events. All loops, lists and counters remain capped there. Each pruning row uses two evaluations and each correction row two, giving $2tN+2nJM$. The entire argument holds for every fixed $H$, hence also conditional on earlier histories fixing it before the new random bits. All function queries are to the known $H$; no target examples are consumed.
 \end{proof}
 
-\paragraph{Processing cost of sharing.}
-Let $C_H$ be an evaluation bit-time cap, $h_c=O(\log(2N))$ the counter width, and $d_\tau$ the bit length of the rational parameters. Scanning all children costs $O(P(j+h_c))$ per row using explicit bitwise parities. Input generation costs $O(n)$ per row. Integer threshold comparisons and prefix copying give the conservative total
+\paragraph{Complete processing and storage.}
+Let $C_H$ cap evaluation bit time, $S_H$ include the stored evaluator and its workspace, $d_0$ bound the rational parameter lengths, and $h_s=O(d_0+t+\log(2nNJMP))$ bound counter and loop widths. Forming $B_j^{\mathsf T}u$ costs $O(nj)$ bit operations by scanning rows. All prefix-label parities, integer increments, exact threshold comparisons and prefix copying give the conservative cost
 \[
- O\bigl(nN(C_H+n)+nPN(n+h_c)+nP(d_\tau+h_c)^2+n^2P\bigr),
+ O\bigl(nt+tN(C_H+nt+P(t+h_s))+tP(d_0+h_s)^2+Pt^2\bigr).
 \]
-plus polynomial parameter-arithmetic cost. For $\tau=1/(4k)$ and $\beta=\rho=1/16$, computing $P,L_0,N$ and the integer comparison factors takes $\operatorname{polylog}(2nk)$ bit operations. Apart from the stored evaluator and its evaluation workspace, space is $O(nP+Ph_c+n+d_\tau+h_c)$ with logarithmic arithmetic workspace. No $N$-row table is stored. These processing costs are included in Section~\ref{sec:costs}.
+Correction pays every matrix-vector product, input XOR and bucket parity; vote handling and final hash checks give
+\[
+ O\bigl(nJM(C_H+nt+P(t+h_s))+nJP h_s+ntP\bigr).
+\]
+Parameter construction uses integer comparisons with powers of two and has polynomial cost in $d_0+\log n$. Random-bit consumption is at most
+\begin{equation}\label{eq:hashrandom}
+ nt+N\bigl[tn+t(t+1)/2\bigr]+nJ(n+Mt).
+\end{equation}
+Store the $nt$ hash bits, current labels/counters, decoded $n$-bit indices, input buffers and one coordinate's votes. The live-space bound is
+\[
+ S_H+O\bigl(nt+P(n+t+h_s)+n+t+h_s\bigr)
+   +\operatorname{poly}(d_0+\log n).
+\]
+Projection counters are integers of magnitude at most $M$; only their signs are used. No growing rational projection, all-label array or sample table is stored. Decoded-bit storage scans fit the stated correction bound because $M\ge P$. The specialized parameters and total learner costs are substituted in Section~\ref{sec:costs}.
 
 \section{Constructing a queryable majority hypothesis}
 Assume $U\subseteq S$ and a fixed, known rational fit $a$ satisfies~\eqref{eq:invariant}. Write $W=W(U)$ and $e=\norm{f-a}_2$. Draw an estimator label batch with Lemma~\ref{lem:estimates}, using list-size argument $k$ in that lemma. For any index $s$, define
@@ -277,7 +341,7 @@ Choose the least positive odd $g$ such that $2^g\ge512k^2/\rho=8192k^2$, and set
  \left\lceil32k\gamma^{-2}\ln\frac{4(P+1)}\beta\right\rceil,
  \left\lceil300(k+1)\ln\frac{2(k+1)}\beta\right\rceil\right\}.
 \end{align}
-For an exact finite implementation, replace each $\ln z$ in a sample count by $\lceil\log_2 z\rceil$. This only increases the count and is computed by integer comparisons. The same convention applies to search and final validation. In Lemma~\ref{lem:estimates}, the proposal uses list-size bound $k$ and failure budget $\rho$, while certification uses $P$, accuracy $\gamma$ and failure budget $\beta$. The generic failure parameter in Lemmas~\ref{lem:majority} and~\ref{lem:search} is instantiated as $\rho$.
+For an exact finite implementation, replace each $\ln z$ in a sample count by $\lceil\log_2 z\rceil$. This only increases the count and is computed by integer comparisons. The same convention applies to search and final validation. In Lemma~\ref{lem:estimates}, the proposal uses list-size bound $k$ and failure budget $\rho$, while certification uses $P$, accuracy $\gamma$ and failure budget $\beta$. The majority lemma's failure parameter and the search lemma's $\eta$ are instantiated as $\rho$.
 
 Initialize $U=\varnothing$ and $a=0$. Execute exactly $T$ trials unless an explicitly stated global abort returns $\FAIL$:
 \begin{enumerate}
@@ -303,7 +367,7 @@ The list precedes the fresh certification batch, even if it depends on all earli
 For every history satisfying the preceding invariant with $W(U)>0$, a trial safely preserves that invariant and gives $W(U^+)<W(U)/16$ with probability at least $3/4-2\beta\ge1/2$.
 \end{proposition}
 \begin{proof}
-Use failure budget $\rho$ in the proposal estimates, majority lemma and prefix search. Since $\varepsilon^2=\rho/262144$, Lemma~\ref{lem:majority} gives $\norm{H-f}_2^2\le W/64$ except with conditional probability at most $\rho$ on the estimator event. The flag count is below $gm$ with probability at most $\exp(-gm/4)\le\rho$; conditioning on enough flags preserves the independent Fourier law of the successful indices. A staged union bound over estimates, flags, majority accuracy and search gives simultaneous success with probability at least $1-4\rho=3/4$. No independence among these events is assumed.
+Use failure budget $\rho$ in the proposal estimates, majority lemma and hashed search (Lemma~\ref{lem:search}, failure at most $3\rho/4$). Since $\varepsilon^2=\rho/262144$, Lemma~\ref{lem:majority} gives $\norm{H-f}_2^2\le W/64$ except with conditional probability at most $\rho$ on the estimator event. The flag count is below $gm$ with probability at most $\exp(-gm/4)\le\rho$; conditioning on enough flags preserves the independent Fourier law of the successful indices. A staged union bound over estimates, flags, majority accuracy and search gives simultaneous success with probability at least $1-4\rho=3/4$. No independence among these events is assumed.
 
 On those four events, a true coefficient omitted from $L$ has $|\widehat H(s)|<1/(4k)\le|c_s|/4$, and hence
 \begin{equation}\label{eq:omitted}
@@ -355,7 +419,7 @@ The proposal parameters $\rho,\varepsilon,\gamma$ are absolute constants. We hav
 \begin{equation}\label{eq:copies}
  T(q_e+4gm+q_c)+\lceil2k\ln100\rceil=O(k\log^2(2k)).
 \end{equation}
-The logarithm of $n$ in the prefix-search confidence does not enter this count: those evaluations are of $H$. Each copy requires at most $O(n)$ single-qubit gates and measurements. No consumed copy is reused and no collective measurement is required.
+The logarithm of $n$ in the search repetition count $J$ does not enter this count: those evaluations are of $H$. Each copy requires at most $O(n)$ single-qubit gates and measurements. No consumed copy is reused and no collective measurement is required.
 
 \paragraph{Refits and coefficient precision.}
 An exact refit has at most $k$ sign columns and $q_c$ original sign labels. Its integer Gram matrix and right side have entries bounded by $q_c$. A minor of order at most $k$ has magnitude at most $k!q_c^k$. Thus each coefficient has a common denominator and numerator of bit length
@@ -383,23 +447,29 @@ bits; the empty product is one. Use integer weight $\sgn(N_s)R/|N_s|$ and the gr
 One $H$ evaluation computes at most $k$ explicit $n$-bit parities and $g$ sums of at most $k$ $B_w$-bit weighted signs, for $\widetilde O(nk+k^3)$ bit operations. Ties give $+1$. Even inaccurate or tiny estimates yield a deterministic Boolean evaluator with these exact representation bounds; no statistical conditioning is needed for its running time. Earlier hypothesis circuits are not recursively embedded.
 
 \paragraph{Complete classical time and randomness.}
-The search uses $\tau=1/(4k)$, $P=64k^2$ and failure budget $\rho=1/16$. Thus
+For search, $\tau=1/(4k)$, $P=64k^2$ and $\eta=\rho=1/16$. Its finite parameters are
+\begin{align*}
+ t&=\lceil\log_2(2^{24}k^4)\rceil,&
+ L_0&=\lceil\log_2(16384tk^2)\rceil,\\
+ N&=8192k^4L_0,& M&=3584k^2,
+\end{align*}
+with $J$ the least positive odd integer satisfying $2^J\ge4096nk^2$. Thus $t,L_0=O(\log(2k))$ and $J=O(\log(2nk))$. The $2tN+2nJM$ evaluations cost
 \[
- N=8192k^4\left\lceil\log_2(4096nk^2)\right\rceil.
+ \widetilde O(nk^5+k^7+n^2k^3+nk^5).
 \]
-The $2nN$ evaluations per trial cost $\widetilde O(n^2k^5+nk^7)$, while explicit child-parity scans cost $\widetilde O(n^2k^6)$. Search randomness and input assembly cost $\widetilde O(n^2k^4)$; prefix copying and exact threshold comparisons fit below these bounds. No child parity is treated as a free oracle operation.
+Pruning input/hash-vector formation costs $\widetilde O(nk^4)$ and its full label-parity scan $\widetilde O(k^6)$. Correction input/hash-vector formation costs $\widetilde O(n^2k^2)$ and its full label-parity scan $\widetilde O(nk^4)$. Parameter arithmetic, vote handling, decoded-bit storage and exact hash consistency checks fit these bounds. No parity or hash operation is free and no $2^t$-label enumeration is performed.
 
-For clarity, the remaining per-trial work has the following conservative bit costs. Reading and grouping measured outcomes, even by linear index comparisons, costs $\widetilde O(nk^2)$. Evaluating the old fit and residual energy on $q_e$ or $q_c$ rows, and computing at most $k$ requested proposal estimates, costs $\widetilde O(nk^2+k^3)$. Fresh certification of at most $P$ candidates costs $\widetilde O(nk^3+k^4)$ for all parities, accumulations, squared tests and archive checks. Forming the at-most-$k$-column Gram system costs $\widetilde O(nk^2+k^3)$; its exact fit costs $\widetilde O(k^6)$ as above. No $P$-column fit is formed: archive overflow aborts first.
+For clarity, the remaining per-trial work has the following conservative bit costs. Reading and grouping measured outcomes, even by linear index comparisons, costs $\widetilde O(nk^2)$. Evaluating the old fit and residual energy on $q_e$ or $q_c$ rows, and computing at most $k$ requested proposal estimates, costs $\widetilde O(nk^2+k^3)$. Fresh certification of at most $P$ candidates costs $\widetilde O(nk^3+k^4)$ for all parities, accumulations, squared tests and archive checks. Forming the at-most-$k$-column Gram system costs $\widetilde O(nk^2+k^3)$; its exact fit costs $\widetilde O(k^6)$ as above. No $P$-column fit is formed: archive overflow aborts first. The $\widetilde O(k^5)$ inverse-weight construction is also paid.
 
-Final Booleanity uses at most $k^2$ XOR-keyed coefficient products. Forming products and sorting explicit keys/payloads costs $\widetilde O(nk^2+k^4)$; accumulated numerators gain only $O(\log k)$ bits. Fresh final validation and exact output cost $\widetilde O(nk^2+k^3)$. This does not enumerate the cube. Every listed cost fits $\widetilde O(n^2k^6+nk^7)$ for $n,k\ge1$. Multiplying by $T=O(\log(2k))$ preserves that bound. Total classical search randomness is at most $TN(3n^2+n)/2=\widetilde O(n^2k^4)$ bits, generated and discarded row by row.
+Final Booleanity uses at most $k^2$ XOR-keyed coefficient products. Forming products and sorting explicit keys/payloads costs $\widetilde O(nk^2+k^4)$; accumulated numerators gain only $O(\log k)$ bits. Fresh final validation and exact output cost $\widetilde O(nk^2+k^3)$. This does not enumerate the cube. Every listed term fits $\widetilde O(n^2k^3+nk^5+k^7)$ for $n,k\ge1$. Multiplication by $T=O(\log(2k))$ preserves that bound and pays all unsuccessful trials. Equation~\eqref{eq:hashrandom} gives $\widetilde O(nk^4+n^2)$ total classical search random bits, including the $T$ trials, generated and discarded row by row.
 
 \paragraph{Live space and unsuccessful tapes.}
-Retain only current prefixes/candidates, label rows and residuals, the archive, group indices/weights, certificate accumulators and a reused determinant workspace. Their sum is $\widetilde O(nk^2+k^3)$ bits: search counters have $O(\log N)$ bits, certificate accumulators have $\widetilde O(k)$ bits each, and determinant storage has $\widetilde O(k^3)$ bits. The final $k^2$ keyed products fit the same envelope. Old hypotheses and batches are discarded after refitting. No search-batch table or full trial transcript is required.
+Retain only current labels/candidates, label rows and residuals, the archive, group indices/weights, certificate accumulators, hash rows, decoded indices and a reused determinant workspace. Their sum is $\widetilde O(nk^2+k^3)$ bits. The hash uses $O(n\log(2k))$ bits; search/projection/vote counters have logarithmic width, certificate accumulators have $\widetilde O(k)$ bits each, and determinant storage has $\widetilde O(k^3)$ bits. The final $k^2$ keyed products fit the same envelope. Old hypotheses and batches are discarded after refitting. No search sample table or full trial transcript is required.
 
-Every trial, batch, prefix count and arithmetic input size is capped. A failed proposal yields an empty list and still pays fresh certification/refitting. Zero inverses, ties, singular systems and archive overflow have explicit rules. The bounds hold on every tape and include all unsuccessful attempts. The success proof uses only the conditional coverage and output cap of Lemma~\ref{lem:search}; sharing the search rows requires no additional independence. This completes Theorem~\ref{thm:main}.
+Every trial, batch, label count and arithmetic input size is capped. A failed proposal yields an empty list and still pays fresh certification/refitting. Zero inverses, sign ties, singular systems and archive overflow have explicit rules. The bounds hold on every tape and include all unsuccessful attempts. The success proof uses only the conditional heavy-frequency coverage and the unchanged $P$ output cap of Lemma~\ref{lem:search}; its failure is at most $3\rho/4\le\rho$. Extras from light buckets face the same fresh original-target certificate as any inaccurate proposal. No additional all-searches-success event or independence among candidates is required. This completes Theorem~\ref{thm:main}.
 
 \section{Scope, limitations and verification status}
-The algorithm bounds both sample use and computation in the noiseless model of supplied examples. It does not improve Ye's logarithmic sample factor~\cite{Ye}, achieve the $O(k\log k)$ target, or provide a practical implementation. Its constants and polynomial exponents are deliberately loose. Noise robustness and improved classical runtime require separate analysis. The bound $k$ on target sparsity is an input promise. If the actual sparsity exceeds $k$, the finite resource caps still hold, but neither correctness nor detection of that violation is claimed. The final validation guarantee assumes a target of sparsity at most $k$.
+The algorithm bounds both sample use and computation in the noiseless model of supplied examples. It does not improve Ye's logarithmic sample factor~\cite{Ye}, achieve the $O(k\log k)$ target, or provide a practical implementation. Its constants and polynomial exponents are deliberately loose. Noise robustness and further runtime improvements require separate analysis. The bound $k$ on target sparsity is an input promise. If the actual sparsity exceeds $k$, the finite resource caps still hold, but neither correctness nor detection of that violation is claimed. The final validation guarantee assumes a target of sparsity at most $k$.
 
 The known $H$ can have degree $n$ and exponentially many Fourier coefficients. This is permitted because its evaluation cost is polynomial and it only proposes indices. The sparse residual used for estimation and certification is always $f-a$. The proof does not require a generic stability theorem for nonlinear corrections of sparse fits, or a short representation of every recovered index in the original samples.
 
@@ -435,6 +505,11 @@ Testing Fourier dimensionality and sparsity.
 E. Kushilevitz and Y. Mansour. Learning decision trees using the Fourier spectrum.
 \emph{SIAM Journal on Computing} 22(6), 1331--1348 (1993).
 \href{https://doi.org/10.1137/0222080}{doi:10.1137/0222080}.
+\bibitem{Datta}
+S. Datta, A. Ghosh, C. Kayal, M. Paraashar and M. Roy.
+Spectral norm, economical sieve, and linear invariance testing of Boolean functions.
+\emph{STACS 2026}, LIPIcs 364, 30:1--30:21 (2026).
+\href{https://doi.org/10.4230/LIPIcs.STACS.2026.30}{doi:10.4230/LIPIcs.STACS.2026.30}.
 \bibitem{Bareiss}
 E. H. Bareiss. Sylvester's identity and multistep integer-preserving Gaussian elimination.
 \emph{Mathematics of Computation} 22(103), 565--578 (1968).

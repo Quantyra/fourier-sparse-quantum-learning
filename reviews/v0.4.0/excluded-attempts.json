@@ -1,0 +1,5 @@
+{
+  "scope": "Operational failures excluded from review clearance",
+  "attempts": [],
+  "note": "All six v0.4.0 model review attempts completed. AGY version was not re-probed because a prior-version probe timed out; its binary hash and configured model are recorded. Historical failures remain in their version records."
+}

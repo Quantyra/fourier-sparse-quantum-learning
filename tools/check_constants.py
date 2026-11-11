@@ -7,6 +7,17 @@ import json
 root = Path(__file__).resolve().parents[1]
 alpha2 = F(82, 81)
 checks = {
+    'energy_bernstein_denominator': 2 * (3 + F(3, 6)) == 7,
+    'energy_bernstein_exponent': F(1, 2)**2 / (2 * (3 + F(3, 6))) == F(1, 28),
+    'energy_bernstein_sample_margin': F(32, 28) >= 1,
+    'hash_depth_factor': 4096*16*4**4 == 2**24,
+    'hash_prefix_confidence_factor': 16*64*16 == 16384,
+    'hash_projection_M_factor': 224*4**2 == 3584,
+    'hash_bit_confidence_factor': 4*64*16 == 4096,
+    'hash_isolation_budget': F(1024,4096) == F(1,4),
+    'hash_projection_bound': F(2,2**7) == F(1,64),
+    'hash_vote_budget': F(32,1024)+F(2,64) == F(1,16),
+    'hash_three_budgets': 3*F(1,4) < 1,
     'shared_search_N_factor': 32 * 4**4 == 8192,
     'shared_search_log_factor': 4 * 64 * 16 == 4096,
     'search_hoeffding_scale': F(1, 4)**2 / 2 == F(1, 32),
