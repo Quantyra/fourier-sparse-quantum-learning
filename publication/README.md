@@ -2,6 +2,12 @@
 
 ## Version 0.4.0
 
+**PUBLISHED AND VERIFIED**, November 10, 2026 Hawaii (November 11 UTC). [Version DOI 10.5281/zenodo.24129424](https://doi.org/10.5281/zenodo.24129424); [concept DOI 10.5281/zenodo.24118802](https://doi.org/10.5281/zenodo.24118802); [release and PDF](https://github.com/Quantyra/fourier-sparse-quantum-learning/releases/tag/v0.4.0).
+
+Frozen tag commit: `62ee17e0b9890fdc57d4ad9f1744c74a89643fbc`. Public metadata, both DOI URLs, every one of 88 archive files and the release PDF verify against the tag. ZIP: 525621 bytes; SHA-256 `406486e69392840ebc9b20765e9b35b5d41fc6442b1b23a305c8d473993de1ce`. [Verification receipt](zenodo-v0.4.0-verification.json). The mathematical source, PDF and review reports remain identical to the tag. This public readback and DOI-bearing citation were added after release and are separate from the immutable archive.
+
+### Retained pre-release decision
+
 **PUBLISH.** All requested review and artifact gates have passed. Dan authorized integration, actual focused Grok/Claude/AGY reviews, feedback resolution and a new Zenodo version. Three initial reviews and three final-source checks completed (grok: GO WITH NOTES, claude: GO, agy: GO). No unresolved blocking finding remains. These are AI reviews, not human peer review or formal certification. [Review manifest](../reviews/v0.4.0/manifest.json) and [findings/dispositions](../reviews/v0.4.0/DISPOSITION.md).
 
 The complete classical bound is tilde-O(n^2 k^3+n k^5+k^7), retaining O(k log^2(2k)) supplied examples, exact recovery, success >37/50 and tilde-O(nk^2+k^3) live bits. The proof pays hash formation, every label parity, original-coordinate correction, random bits, exact fitting and every unsuccessful trial. Source SHA-256: `f82d438e4989f90d8334701c62bade11e8b87cdf9ec849a991e3b214e67b07c7`. PDF SHA-256: `161b260574bd1a1bf77b96f8351cdc1ef162d9f244eacd2d3b3d513a8d86c7dc` (15 pages, 145114 bytes). All thirty-three rational checks and actual all-page inspection pass; no TeX layout/reference/missing-glyph diagnostic remains. The retained Fontconfig environment message did not prevent compilation or font embedding checks.

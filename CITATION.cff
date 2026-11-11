@@ -3,6 +3,7 @@ message: "Please cite the manuscript using preferred-citation and the version DO
 type: software
 title: "Fourier-sparse quantum learning: manuscript archive"
 version: 0.4.0
+doi: 10.5281/zenodo.24129424
 date-released: "2026-11-10"
 authors:
   - family-names: Fredriksen
@@ -18,6 +19,7 @@ keywords:
   - exact learning
 preferred-citation:
   type: article
+  doi: 10.5281/zenodo.24129424
   title: "Polynomial-Time Exact Learning of Fourier-Sparse Boolean Functions from Nearly Linear Quantum Samples"
   authors:
     - family-names: Fredriksen
@@ -26,4 +28,4 @@ preferred-citation:
       orcid: https://orcid.org/0009-0002-9123-7435
   year: 2026
   notes: "Manuscript version 0.4.0; internal AI-assisted checks and separate Grok, Claude and AGY model reviews. No independent peer review or formal certification."
-  url: https://github.com/Quantyra/fourier-sparse-quantum-learning
+  url: https://doi.org/10.5281/zenodo.24129424
