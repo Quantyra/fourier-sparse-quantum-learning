@@ -2,6 +2,12 @@
 
 ## Version 0.3.0
 
+**PUBLISHED AND VERIFIED**, November 10, 2026 Hawaii (November 11 UTC). [Version DOI 10.5281/zenodo.24126516](https://doi.org/10.5281/zenodo.24126516); [concept DOI 10.5281/zenodo.24118802](https://doi.org/10.5281/zenodo.24118802); [release and PDF](https://github.com/Quantyra/fourier-sparse-quantum-learning/releases/tag/v0.3.0).
+
+Frozen tag commit: `98bb6f6164f74f5d6ce503adfaf31fc6a6a9d7df`. Public metadata, both resolving DOI URLs, every one of 71 archived files and the release PDF verify against that tag. ZIP: 414591 bytes; SHA-256 `c435dd46d2d25a3dbd6bbacf8f897f4af569da2df1f1e8c300e2efdfc8f01bfa`. [Verification receipt](zenodo-v0.3.0-verification.json). The mathematical source, PDF and review reports remain identical to the tag. This readback and DOI-bearing citation were added after release and are separate from the immutable archive.
+
+### Retained pre-release decision
+
 **PUBLISH.** The author authorized integration, focused actual Grok/Claude/AGY reviews, feedback implementation and a new Zenodo version. All three initial reports and final-source checks completed; Grok and Claude returned GO WITH NOTES, AGY GO. Clarifications to notation, evaluator workspace, parameter arithmetic and Cramer zero numerators are implemented. Remaining local-notation suggestions and reviewer errors are explicitly dispositioned. No blocking finding remains. These are AI reviews, not human peer review or formal certification.
 
 The full classical bound is tilde-O(n^2 k^6+n k^7), with the existing O(k log^2(2k)) supplied copies, exact recovery, success >37/50 and live-space guarantee. Source SHA-256: `aa73155e2bee2ce85f27eff07785f601ae29fbc535dff0e25ed0cc5b3fadd565`. PDF SHA-256: `36a18fcf57060f25f45a630d9047ffe8f76169010b1ab6ac3422ea12c9e4ce88` (13 pages, 133966 bytes, 21 embedded fonts). All twenty-two exact constant checks and actual page inspection pass; the final compile has no layout/reference/missing-glyph diagnostics. [Version-specific review manifest](../reviews/v0.3.0/manifest.json).

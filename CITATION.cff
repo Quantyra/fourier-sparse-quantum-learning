@@ -3,6 +3,7 @@ message: "Please cite the manuscript using preferred-citation and the version DO
 type: software
 title: "Fourier-sparse quantum learning: manuscript archive"
 version: 0.3.0
+doi: 10.5281/zenodo.24126516
 date-released: "2026-11-10"
 authors:
   - family-names: Fredriksen
@@ -17,6 +18,7 @@ keywords:
   - Fourier sparsity
   - exact learning
 preferred-citation:
+  doi: 10.5281/zenodo.24126516
   type: article
   title: "Polynomial-Time Exact Learning of Fourier-Sparse Boolean Functions from Nearly Linear Quantum Samples"
   authors:
