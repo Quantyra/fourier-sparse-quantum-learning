@@ -2,6 +2,14 @@
 
 ## Version 0.2.0
 
+**PUBLISHED AND VERIFIED**, November 10, 2026 Hawaii (November 11 UTC). [Version DOI 10.5281/zenodo.24122694](https://doi.org/10.5281/zenodo.24122694); [concept DOI 10.5281/zenodo.24118802](https://doi.org/10.5281/zenodo.24118802); [release and PDF](https://github.com/Quantyra/fourier-sparse-quantum-learning/releases/tag/v0.2.0).
+
+Frozen commit: `83214851dcb5c99045ecb4cda7e2263fca9a258d`. Actual public metadata, both resolving DOI URLs, the ZIP checksum, every one of 54 archive files and the release PDF verify against the exact tag. ZIP: 319908 bytes; SHA-256 `efa303878cdaf67369c9ffa8e7fcdf41182358e386ce86fdf06920fe22656e53`. [Verification receipt](zenodo-v0.2.0-verification.json). The eleven-page PDF is 124176 bytes with 21 embedded fonts. No journal submission or formal proof run occurred.
+
+This readback, the DOI-bearing CITATION file and the public verification receipt were added after publication and are not represented as contents of the immutable v0.2.0 archive. Mathematical source, PDF and version-specific review reports remain identical to the tag. The pre-release decision below is retained as history.
+
+### Retained pre-release decision
+
 **PUBLISH.** All requested review and artifact gates have passed for manuscript v0.2.0. The author authorized integration of the safe-progress improvement, actual Grok/Claude/AGY reviews, a new Zenodo version and certification-scope reconciliation. All three full reports and final-source rechecks are complete; applicable feedback is implemented and no unresolved blocker remains. These are AI reviews, not independent human peer review or formal certification.
 
 Current claim: every-target exact learning from supplied uniform quantum examples with O(k log^2(2k)) copies, success greater than 37/50 and retained polynomial all-tape costs. The archive includes every failed-trial cost and exact arithmetic; no practical-runtime, noise, exhaustive novelty or BPP/BQP claim is made. The same primary-source comparison is retained with a version-pinned Ye comparison.

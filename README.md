@@ -1,6 +1,6 @@
 # Fourier-sparse quantum learning
 
-Version **0.2.0** includes the improved O(k log^2(2k)) sample bound. Grok, Claude and AGY completed [full reviews and final-source rechecks](reviews/v0.2.0/DISPOSITION.md), with feedback dispositioned. Publication status is recorded below. Version 0.1.0 and its [review history](reviews/DISPOSITION.md) remain preserved. AI reviews are not independent human peer review or formal certification.
+Version **0.2.0** includes the improved O(k log^2(2k)) sample bound. Grok, Claude and AGY completed [full reviews and final-source rechecks](reviews/v0.2.0/DISPOSITION.md), with feedback dispositioned. Published November 10, 2026 (Hawaii): [version DOI 10.5281/zenodo.24122694](https://doi.org/10.5281/zenodo.24122694), [all-version DOI](https://doi.org/10.5281/zenodo.24118802), [release and PDF](https://github.com/Quantyra/fourier-sparse-quantum-learning/releases/tag/v0.2.0). Every one of 54 archived files and the release PDF match the tag; see the [post-release receipt](publication/zenodo-v0.2.0-verification.json). Version 0.1.0 and its [review history](reviews/DISPOSITION.md) remain preserved. AI reviews are not independent human peer review or formal certification.
 
 **Polynomial-Time Exact Learning of Fourier-Sparse Boolean Functions from Nearly Linear Quantum Samples**
 
